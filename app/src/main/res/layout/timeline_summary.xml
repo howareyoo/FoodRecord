@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="12dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="8dp"
+            android:layout_weight="0"
+            app:srcCompat="@drawable/time_line_bar_horizontal" />
+
+        <TextView
+            android:id="@+id/tvTimeLineDate"
+            android:layout_width="42dp"
+            android:layout_height="21dp"
+            android:layout_marginRight="17dp"
+            android:layout_weight="0"
+            android:textColor="#5D200D"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvShowSummary"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:layout_weight="0"
+            android:background="@drawable/time_line_bar_odd"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="8dp"
+            android:text="가나다라"
+            android:textAllCaps="false"
+            android:textColor="#5D200D"
+            android:textSize="10dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+</LinearLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/map"
+        android:icon="@drawable/map_switch"
+        android:title="map" />
+    <item
+        android:id="@+id/timeLine"
+        android:icon="@drawable/list_switch"
+        android:title="timeLine" />
+</menu>
