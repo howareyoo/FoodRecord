@@ -20,24 +20,24 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/pieChart"
-                android:layout_width="200dp"
-
-                android:layout_height="200dp"
-                android:layout_gravity="center"
-                android:layout_marginTop="50dp" />
-
             <TextView
                 android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="23dp"
+                android:layout_marginTop="30dp"
                 android:layout_marginBottom="13dp"
-                android:text="WAHT IS YOUR FAVORITE THING?"
+                android:text="WHAT IS YOUR FAVORITE PLACE?"
                 android:textColor="#0FB5D8"
                 android:textStyle="bold" />
+
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/pieChart"
+                android:layout_width="240dp"
+
+                android:layout_height="240dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="13dp" />
 
 
         </LinearLayout>
@@ -56,7 +56,6 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="56dp"
-                android:layout_marginTop="10dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -66,6 +65,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="25dp"
+                    android:layout_weight="0"
                     android:text="1"
                     android:textColor="#0FB5D8"
                     android:textSize="20sp"
@@ -73,20 +73,30 @@
 
                 <TextView
                     android:id="@+id/tvStoreRank1"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0"
+                    android:text="부부상회"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <RatingBar
+                    android:id="@+id/ratingBarRank1"
+                    style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="오리온"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="0"
+                    android:progressTint="#0FB5D8" />
 
                 <ImageView
                     android:id="@+id/imageView4"
                     android:layout_width="22dp"
                     android:layout_height="28dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="230dp"
-                    android:layout_weight="0"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
                     app:srcCompat="@drawable/stats_gold" />
             </LinearLayout>
 
@@ -102,6 +112,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="25dp"
+                    android:layout_weight="0"
                     android:text="2"
                     android:textColor="#0FB5D8"
                     android:textSize="20sp"
@@ -109,19 +120,30 @@
 
                 <TextView
                     android:id="@+id/tvStoreRank2"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0"
+                    android:text="올데이잭"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <RatingBar
+                    android:id="@+id/ratingBarRank2"
+                    style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="오리온"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="0"
+                    android:progressTint="#0FB5D8" />
 
                 <ImageView
                     android:id="@+id/imageView13"
                     android:layout_width="22dp"
                     android:layout_height="28dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="230dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
                     app:srcCompat="@drawable/stats_silver" />
             </LinearLayout>
 
@@ -137,6 +159,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="25dp"
+                    android:layout_weight="0"
                     android:text="3"
                     android:textColor="#0FB5D8"
                     android:textSize="20sp"
@@ -144,19 +167,30 @@
 
                 <TextView
                     android:id="@+id/tvStoreRank3"
-                    android:layout_width="wrap_content"
+                    android:layout_width="105dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
+                    android:layout_weight="0"
                     android:text="오리온"
                     android:textSize="20sp"
                     android:textStyle="bold" />
+
+                <RatingBar
+                    android:id="@+id/ratingBarRank3"
+                    style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0"
+                    android:progressTint="#0FB5D8" />
 
                 <ImageView
                     android:id="@+id/imageView14"
                     android:layout_width="22dp"
                     android:layout_height="28dp"
                     android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="230dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_weight="1"
                     app:srcCompat="@drawable/stats_copper" />
             </LinearLayout>
 
@@ -172,6 +206,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="25dp"
+                    android:layout_weight="0"
                     android:text="4"
                     android:textColor="#0FB5D8"
                     android:textSize="20sp"
@@ -179,12 +214,22 @@
 
                 <TextView
                     android:id="@+id/tvStoreRank4"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0"
+                    android:text="규태네"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <RatingBar
+                    android:id="@+id/ratingBarRank4"
+                    style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="오리온"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="0"
+                    android:progressTint="#0FB5D8" />
             </LinearLayout>
 
             <LinearLayout
@@ -199,6 +244,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="32dp"
                     android:layout_marginRight="25dp"
+                    android:layout_weight="0"
                     android:text="5"
                     android:textColor="#0FB5D8"
                     android:textSize="20sp"
@@ -206,12 +252,22 @@
 
                 <TextView
                     android:id="@+id/tvStoreRank5"
+                    android:layout_width="105dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_weight="0"
+                    android:text="용성양"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+                <RatingBar
+                    android:id="@+id/ratingBarRank5"
+                    style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
-                    android:text="오리온"
-                    android:textSize="20sp"
-                    android:textStyle="bold" />
+                    android:layout_weight="0"
+                    android:progressTint="#0FB5D8" />
             </LinearLayout>
 
         </LinearLayout>
