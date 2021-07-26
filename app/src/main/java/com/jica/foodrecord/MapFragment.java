@@ -20,7 +20,7 @@ import java.util.Map;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
-
+    GoogleMap map;
     private MapView mapView;
 
     RecyclerView recyclerView;
@@ -115,6 +115,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     @Override
     public void onMapReady(@NonNull  GoogleMap googleMap) {
+
+        map = googleMap;
 
 
 

@@ -27,13 +27,13 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="30dp"
                 android:layout_marginBottom="13dp"
-                android:text="WHAT IS YOUR FAVORITE PLACE?"
+                android:text="WHAT IS YOUR FAVORITE RESTAURANT?"
                 android:textColor="#0FB5D8"
                 android:textStyle="bold" />
 
             <com.github.mikephil.charting.charts.PieChart
                 android:id="@+id/pieChart"
-                android:layout_width="240dp"
+                android:layout_width="250dp"
 
                 android:layout_height="240dp"
                 android:layout_gravity="center"
@@ -83,11 +83,12 @@
 
                 <RatingBar
                     android:id="@+id/ratingBarRank1"
-                    style="@android:style/Widget.DeviceDefault.Light.RatingBar.Small"
+                    style="@style/Widget.AppCompat.RatingBar.Small"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="0"
+                    android:isIndicator="false"
                     android:progressTint="#0FB5D8" />
 
                 <ImageView
@@ -135,6 +136,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="0"
+                    android:isIndicator="false"
                     android:progressTint="#0FB5D8" />
 
                 <ImageView
@@ -182,6 +184,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="0"
+                    android:isIndicator="false"
                     android:progressTint="#0FB5D8" />
 
                 <ImageView
@@ -229,6 +232,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="0"
+                    android:isIndicator="false"
                     android:progressTint="#0FB5D8" />
             </LinearLayout>
 
@@ -267,6 +271,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_weight="0"
+                    android:isIndicator="false"
                     android:progressTint="#0FB5D8" />
             </LinearLayout>
 
