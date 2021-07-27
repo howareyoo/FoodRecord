@@ -75,6 +75,7 @@ public class EditActivity extends AppCompatActivity implements OnMapReadyCallbac
     TextView tvSearchCurrentLocation;
     EditText etSearch;
     MarkerOptions myMarker;
+    Button btnSearch;
 
 
     Button btnTimePicker;
@@ -163,17 +164,18 @@ public class EditActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment = (SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
 
-        tvSearchCurrentLocation = findViewById(R.id.tvSearchCurrentLocation);
+//        tvSearchCurrentLocation = findViewById(R.id.tvSearchCurrentLocation);
         etSearch = findViewById(R.id.etSearch);
+        btnSearch = findViewById(R.id.btnSearch);
 
-        tvSearchCurrentLocation.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                requestMyLocation();
-            }
-        });
+//        tvSearchCurrentLocation.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                requestMyLocation();
+//            }
+//        });
 
-        etSearch.setOnClickListener(new View.OnClickListener() {
+        btnSearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(etSearch.getText().toString().length() > 0){
@@ -321,7 +323,7 @@ public class EditActivity extends AppCompatActivity implements OnMapReadyCallbac
             return;
         }
         map.setMyLocationEnabled(true);
-//            googleMap.addMarker(new MarkerOptions().position(new LatLng(33.38,126.55)).title("Maker"));
+//
     }
 
 
@@ -345,38 +347,38 @@ public class EditActivity extends AppCompatActivity implements OnMapReadyCallbac
         return resLocation;
     }
 
-
-    private void requestMyLocation() {
-        LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
-        try {
-            long minTime = 1000;    //갱신 시간
-            float minDistance = 0;  //갱신에 필요한 최소 거리
-
-            manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTime, minDistance, new LocationListener() {
-                @Override
-                public void onLocationChanged(Location location) {
-                    showCurrentLocation(location);
-                }
-
-                @Override
-                public void onStatusChanged(String s, int i, Bundle bundle) {
-
-                }
-
-                @Override
-                public void onProviderEnabled(String s) {
-
-                }
-
-                @Override
-                public void onProviderDisabled(String s) {
-
-                }
-            });
-        } catch (SecurityException e) {
-            e.printStackTrace();
-        }
-    }
+//
+//    private void requestMyLocation() {
+//        LocationManager manager = (LocationManager) getSystemService(Context.LOCATION_SERVICE);
+//        try {
+//            long minTime = 1000;    //갱신 시간
+//            float minDistance = 0;  //갱신에 필요한 최소 거리
+//
+//            manager.requestLocationUpdates(LocationManager.GPS_PROVIDER, minTime, minDistance, new LocationListener() {
+//                @Override
+//                public void onLocationChanged(Location location) {
+//                    showCurrentLocation(location);
+//                }
+//
+//                @Override
+//                public void onStatusChanged(String s, int i, Bundle bundle) {
+//
+//                }
+//
+//                @Override
+//                public void onProviderEnabled(String s) {
+//
+//                }
+//
+//                @Override
+//                public void onProviderDisabled(String s) {
+//
+//                }
+//            });
+//        } catch (SecurityException e) {
+//            e.printStackTrace();
+//        }
+//    }
 
     private void showCurrentLocation(Location location) {
         LatLng curPoint = new LatLng(location.getLatitude(), location.getLongitude());
@@ -389,8 +391,8 @@ public class EditActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         //마커 찍기
         Location targetLocation = new Location("");
-        targetLocation.setLatitude(37.4937);
-        targetLocation.setLongitude(127.0643);
+        targetLocation.setLatitude(curPoint.latitude);
+        targetLocation.setLongitude( curPoint.longitude);
         showMyMarker(targetLocation);
     }
 
@@ -444,8 +446,6 @@ public class EditActivity extends AppCompatActivity implements OnMapReadyCallbac
         if(myMarker == null) {
             myMarker = new MarkerOptions();
             myMarker.position(new LatLng(location.getLatitude(), location.getLongitude()));
-            myMarker.title("◎ 내위치\n");
-            myMarker.snippet("여기가 어디지?");
             myMarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_pointer));
             map.addMarker(myMarker);
         }

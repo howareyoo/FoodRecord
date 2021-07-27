@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.jica.foodrecord">
 
 
@@ -24,6 +25,8 @@
     <uses-feature android:name="android.hardware.camera"
         android:required="true" />
 
+
+
     
 
     <application
@@ -34,9 +37,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.FoodRecord">
 
-        <uses-library android:name="com.google.android.maps"/>
-        <uses-library android:name="org.apache.http.legacy"
-            android:required="false"/>
+
 
 
         <meta-data

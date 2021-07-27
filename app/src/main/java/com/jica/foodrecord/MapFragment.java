@@ -57,6 +57,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         adapter.addItem(new MapInformation("부송국수"));
         adapter.addItem(new MapInformation("용성양"));
         adapter.addItem(new MapInformation("후켄"));
+        adapter.addItem(new MapInformation("후켄"));
+        adapter.addItem(new MapInformation("후켄"));
 
 
         recyclerView.setAdapter(adapter);

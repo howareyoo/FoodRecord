@@ -212,11 +212,21 @@
                         android:id="@+id/etSearch"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
                         android:layout_marginLeft="10dp"
                         android:background="@android:color/transparent"
                         android:ems="10"
                         android:hint="SEARCH"
-                        android:inputType="textPersonName" />
+                        android:inputType="textPersonName"
+                        android:textAlignment="center" />
+
+                    <Button
+                        android:id="@+id/btnSearch"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="30dp"
+                        android:background="@drawable/search_map" />
                 </LinearLayout>
 
                 <FrameLayout
