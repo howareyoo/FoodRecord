@@ -139,7 +139,7 @@
                         android:textSize="12sp" />
 
                     <EditText
-                        android:id="@+id/textView4"
+                        android:id="@+id/evPersonnel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="75dp"
@@ -149,7 +149,7 @@
                         android:textSize="12sp" />
 
                     <CheckBox
-                        android:id="@+id/checkBox"
+                        android:id="@+id/checkBoxDrink"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="210dp"

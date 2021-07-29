@@ -61,6 +61,8 @@ public class TimeLineFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup flContainer, Bundle savedInstanceState){
         ViewGroup rootview = (ViewGroup) inflater.inflate(R.layout.fragment_time_line, flContainer, false);
 
+
+
 //       initUI(rootview);
 
         recyclerView  = (RecyclerView) rootview.findViewById(R.id.rvTimeLine);
@@ -161,6 +163,13 @@ public class TimeLineFragment extends Fragment {
 
 
     }
+
+//
+//    public int loadFoodListData() {
+//        AppConstants.println("loadFoodListData called");
+//        String sql = "select_id, TITLE, TIMEPICKER from " + FoodDatabase.TABLE_FOOD_INFO;
+//
+//    }
 
 //    private void initUI(ViewGroup rootView){
 //

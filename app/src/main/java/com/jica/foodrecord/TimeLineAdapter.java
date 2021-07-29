@@ -48,55 +48,55 @@ public class TimeLineAdapter extends RecyclerView.Adapter<TimeLineAdapter.ViewHo
 
     static class ViewHolder extends RecyclerView.ViewHolder{
 
-            TextView tvTimeLineDate;
-            TextView tvShowSummary;
+        TextView tvTimeLineDate;
+        TextView tvShowSummary;
 
-            public ViewHolder(@NonNull View itemView, final OnTimeLineSummaryClickListener listener) {
-                super(itemView);
+        public ViewHolder(@NonNull View itemView, final OnTimeLineSummaryClickListener listener) {
+            super(itemView);
 
-                tvTimeLineDate = itemView.findViewById(R.id.tvTimeLineDate);
-                tvShowSummary = itemView.findViewById(R.id.tvShowSummary);
+            tvTimeLineDate = itemView.findViewById(R.id.tvTimeLineDate);
+            tvShowSummary = itemView.findViewById(R.id.tvShowSummary);
 
-                itemView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        int pos = getAdapterPosition();
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    int pos = getAdapterPosition();
 
-                        if(listener !=null){
-                            listener.onItemClick(ViewHolder.this, v, pos);
+                    if(listener !=null){
+                        listener.onItemClick(ViewHolder.this, v, pos);
 
-                        }
                     }
-                });
+                }
+            });
 
 
-
-            }
-
-            public void setItem(TimeLineSummary item){
-                tvTimeLineDate.setText(item.getTvTimeLineDate());
-                tvShowSummary.setText(item.getTvShowSummary());
-
-
-
-            }
 
         }
 
-        public void addItem(TimeLineSummary item){
+        public void setItem(TimeLineSummary item){
+            tvTimeLineDate.setText(item.getTvTimeLineDate());
+            tvShowSummary.setText(item.getTvShowSummary());
+
+
+
+        }
+
+    }
+
+    public void addItem(TimeLineSummary item){
         items.add(item);
-        }
+    }
 
-        public void setItems(ArrayList<TimeLineSummary> items){
+    public void setItems(ArrayList<TimeLineSummary> items){
         this.items = items;
-        }
+    }
 
-        public TimeLineSummary getItem(int position){
+    public TimeLineSummary getItem(int position){
         return items.get(position);
-        }
+    }
 
-        public void setItem(int position, TimeLineSummary item){
+    public void setItem(int position, TimeLineSummary item){
         items.set(position,item);
-        }
+    }
 
 }

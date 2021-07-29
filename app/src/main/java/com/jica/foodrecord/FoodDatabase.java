@@ -107,6 +107,7 @@ public class FoodDatabase {
                     + " DATA TEXT "
                     + " TITLE TEXT "
                     + " PICTURE TEXT DEFAULT "
+                    + " TIMEPICKER TEXT"
                     + " CONTENTS TEXT "
                     + " LOCATION TEXT "
                     + " CREATE_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP "
@@ -128,9 +129,9 @@ public class FoodDatabase {
             }
         }
 
-        private void insertRecord(SQLiteDatabase _db, String title, String picture, String contents, String location) {
+        private void insertRecord(SQLiteDatabase _db, String title, String picture, String timePicker, String contents, String location) {
             try {
-                _db.execSQL( "insert into " + TABLE_FOOD_INFO + "(TITLE, PICTURE, CONTENTS, LOCATION) values ('" + title + "', '" + picture + "', '" + contents + "', '"+location+"');" );
+                _db.execSQL( "insert into " + TABLE_FOOD_INFO + "(TITLE, PICTURE, TIMEPICKER, CONTENTS, LOCATION) values ('" + title + "', '" + picture + "','" + timePicker + "', '" + contents + "', '"+location+"');" );
             } catch(Exception ex) {
                 Log.e(TAG, "Exception in executing insert SQL.", ex);
             }
@@ -138,9 +139,9 @@ public class FoodDatabase {
 
     }
 
-    public void insertRecord(String title, String picture, String contents, String location) {
+    public void insertRecord(String title, String picture, String timePicker,String contents, String location) {
         try {
-            db.execSQL( "insert into " + TABLE_FOOD_INFO + "(TITLE, PICTURE, CONTENTS, LOCATION) values ('" + title + "', '" + picture + "', '" + contents + "', '"+location+"');" );
+            db.execSQL( "insert into " + TABLE_FOOD_INFO + "(TITLE, PICTURE, TIMEPICKER,CONTENTS, LOCATION) values ('" + title + "', '" + picture + "','" + timePicker + "', '" + contents + "', '"+location+"');" );
         } catch(Exception ex) {
             Log.e(TAG, "Exception in executing insert SQL.", ex);
         }
