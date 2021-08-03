@@ -23,49 +23,53 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.lang.annotation.Annotation;
+import java.util.ArrayList;
 
 public class TimeLineFragment extends Fragment {
 
     RecyclerView recyclerView;
     TimeLineAdapter adapter;
+    OnDatabaseCallback callback;
 
     Context context;
-    OnTabItemSelectedListener listener;
+//    OnTabItemSelectedListener listener;
 
 
-    Boolean isFabOpen = true;
+
 
 
     @Override
     public void onAttach(@NonNull  Context context) {
         super.onAttach(context);
 
-        this.context = context;
-        if(context instanceof OnTabItemSelectedListener){
-            listener = (OnTabItemSelectedListener) context;
-        }
+        callback = (OnDatabaseCallback) getActivity();
+//
+//        this.context = context;
+//        if(context instanceof OnTabItemSelectedListener){
+//            listener = (OnTabItemSelectedListener) context;
+//        }
 
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-
-        if (context != null){
-            context = null;
-            listener = null;
-        }
+//
+//        if (context != null){
+//            context = null;
+//            listener = null;
+//        }
 
     }
 
     public View onCreateView(LayoutInflater inflater, ViewGroup flContainer, Bundle savedInstanceState){
-        ViewGroup rootview = (ViewGroup) inflater.inflate(R.layout.fragment_time_line, flContainer, false);
+        ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_time_line, flContainer, false);
 
 
 
-//       initUI(rootview);
 
-        recyclerView  = (RecyclerView) rootview.findViewById(R.id.rvTimeLine);
+
+        recyclerView  = rootView.findViewById(R.id.rvTimeLine);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
@@ -75,35 +79,18 @@ public class TimeLineFragment extends Fragment {
 
 
         adapter = new TimeLineAdapter();
-
-
-
-        adapter.addItem(new TimeLineSummary("배가고프다","03.07"));
-        adapter.addItem(new TimeLineSummary("배가고프다","03.07"));
-        adapter.addItem(new TimeLineSummary("배가고프다","03.07"));
-        adapter.addItem(new TimeLineSummary("배가고프다","03.07"));
-        adapter.addItem(new TimeLineSummary("배가고프다","03.07"));
-        adapter.addItem(new TimeLineSummary("배가고프다","03.07"));
-        adapter.addItem(new TimeLineSummary("배가고프다","03.07"));
-        adapter.addItem(new TimeLineSummary("배가고프다","03.07"));
-        adapter.addItem(new TimeLineSummary("배가고프다","03.07"));
-        adapter.addItem(new TimeLineSummary("배가고프다","03.07"));
-        adapter.addItem(new TimeLineSummary("배가고프다","03.07"));
-        adapter.addItem(new TimeLineSummary("배가고프다","03.07"));
-        adapter.addItem(new TimeLineSummary("배가고프다","03.07"));
-        adapter.addItem(new TimeLineSummary("배가고프다","03.07"));
-
-
-
         recyclerView.setAdapter(adapter);
 
+        ArrayList<FoodItem> result = callback.selectAll();
+        adapter.setItems(result);
 
 
 
-        FloatingActionButton fabMenu = (FloatingActionButton)rootview.findViewById(R.id.fabMenu);
-        FloatingActionButton fabSetting = (FloatingActionButton)rootview.findViewById(R.id.fabSetting);
-        FloatingActionButton fabStats = (FloatingActionButton)rootview.findViewById(R.id.fabStats);
-        FloatingActionButton fabPlus = (FloatingActionButton)rootview.findViewById(R.id.fabPlus);
+
+        FloatingActionButton fabMenu = (FloatingActionButton)rootView.findViewById(R.id.fabMenu);
+        FloatingActionButton fabSetting = (FloatingActionButton)rootView.findViewById(R.id.fabSetting);
+        FloatingActionButton fabStats = (FloatingActionButton)rootView.findViewById(R.id.fabStats);
+        FloatingActionButton fabPlus = (FloatingActionButton)rootView.findViewById(R.id.fabPlus);
 
 
         fabMenu.setOnClickListener(new View.OnClickListener() {
@@ -158,24 +145,11 @@ public class TimeLineFragment extends Fragment {
 
 
 
-        return rootview;
+        return rootView;
 
 
 
     }
-
-//
-//    public int loadFoodListData() {
-//        AppConstants.println("loadFoodListData called");
-//        String sql = "select_id, TITLE, TIMEPICKER from " + FoodDatabase.TABLE_FOOD_INFO;
-//
-//    }
-
-//    private void initUI(ViewGroup rootView){
-//
-//
-//
-//    }
 
 
 

@@ -2,29 +2,28 @@ package com.jica.foodrecord;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.database.DatabaseErrorHandler;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
-import androidx.annotation.Nullable;
 
-import static java.sql.DriverManager.println;
+
+import java.util.ArrayList;
+
 
 public class FoodDatabase {
-    private  static final String TAG = "FoodDatabase";
 
+    public static final String TAG = "FoodDatabase";
 
-    private static  FoodDatabase database;
+    private static FoodDatabase database;
 
-
-    public  static String DATABASE_NAME = "food.db";
+    public static String DATABASE_NAME = "food.db";
 
     public static String TABLE_FOOD_INFO = "FOOD_INFO";
 
     public static int DATABASE_VERSION = 1;
 
-    private DatabaseHelper dbHelper;;
+    private DatabaseHelper dbHelper;
 
     private SQLiteDatabase db;
 
@@ -34,12 +33,13 @@ public class FoodDatabase {
         this.context = context;
     }
 
-    public static FoodDatabase getInstance(Context context) {
-        if (database == null){
+    public static FoodDatabase getInstance(Context context){
+        if(database == null){
             database = new FoodDatabase(context);
         }
         return database;
     }
+
 
     public boolean open() {
         println("opening database [" + DATABASE_NAME + "].");
@@ -48,7 +48,6 @@ public class FoodDatabase {
         db = dbHelper.getWritableDatabase();
 
         return true;
-
     }
 
     public void close() {
@@ -61,13 +60,13 @@ public class FoodDatabase {
         println("\nexecuteQuery called.\n");
 
         Cursor c1 = null;
-        try{
+        try {
             c1 = db.rawQuery(SQL, null);
             println("cursor count : " + c1.getCount());
-
-        } catch (Exception ex){
-            Log.e(TAG, "Exception in executeQuery",ex);
+        } catch(Exception ex) {
+            Log.e(TAG, "Exception in executeQuery", ex);
         }
+
         return c1;
     }
 
@@ -86,8 +85,7 @@ public class FoodDatabase {
     }
 
     private class DatabaseHelper extends SQLiteOpenHelper {
-
-        public DatabaseHelper(@Nullable Context context) {
+        public DatabaseHelper( Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
         }
 
@@ -103,15 +101,23 @@ public class FoodDatabase {
             }
 
             String CREATE_SQL = "create table " + TABLE_FOOD_INFO + "("
-                    + " _id INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT,"
-                    + " DATA TEXT "
-                    + " TITLE TEXT "
-                    + " PICTURE TEXT DEFAULT "
-                    + " TIMEPICKER TEXT"
-                    + " CONTENTS TEXT "
-                    + " LOCATION TEXT "
-                    + " CREATE_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP "
+                    + "  _id INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT, "
+                    + "  DATE TEXT, "
+                    + "  TITLE TEXT, "
+                    + "  CONTENTS TEXT, "
+                    + "  LOCATION TEXT, "
+                    + "  CREATE_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP "
                     + ")";
+            try {
+                _db.execSQL(CREATE_SQL);
+            } catch(Exception ex) {
+                Log.e(TAG, "Exception in CREATE_SQL", ex);
+            }
+
+
+            insertRecord(_db, "삼월칠일", "용성양", "맛있음", "전주");
+
+
 
 
 
@@ -122,38 +128,64 @@ public class FoodDatabase {
 
         }
 
+
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+            println("Upgrading database from version " + oldVersion + " to " + newVersion + ".");
+
             if (oldVersion < 2) {   // version 1
 
             }
         }
 
-        private void insertRecord(SQLiteDatabase _db, String title, String picture, String timePicker, String contents, String location) {
+        private void insertRecord(SQLiteDatabase _db, String date, String title, String contents , String location) {
             try {
-                _db.execSQL( "insert into " + TABLE_FOOD_INFO + "(TITLE, PICTURE, TIMEPICKER, CONTENTS, LOCATION) values ('" + title + "', '" + picture + "','" + timePicker + "', '" + contents + "', '"+location+"');" );
+                _db.execSQL( "insert into " + TABLE_FOOD_INFO + "(DATE, TITLE, CONTENTS, LOCATION) values ('" + date + "', '" + title + "', '" + contents + "', '" + location + "');" );
             } catch(Exception ex) {
                 Log.e(TAG, "Exception in executing insert SQL.", ex);
             }
         }
 
+
+
     }
 
-    public void insertRecord(String title, String picture, String timePicker,String contents, String location) {
-        try {
-            db.execSQL( "insert into " + TABLE_FOOD_INFO + "(TITLE, PICTURE, TIMEPICKER,CONTENTS, LOCATION) values ('" + title + "', '" + picture + "','" + timePicker + "', '" + contents + "', '"+location+"');" );
-        } catch(Exception ex) {
+
+    public void insertRecord(String date, String title, String contents, String location){
+        try{
+            db.execSQL( "insert into " + TABLE_FOOD_INFO + "(DATE, TITLE, CONTENTS, LOCATION) values ('" + date + "', '" + title + "', '" + contents + "', '" + location + "');" );
+        }catch (Exception ex){
             Log.e(TAG, "Exception in executing insert SQL.", ex);
         }
     }
 
+    public ArrayList<FoodItem> selectAll() {
+        ArrayList<FoodItem> result = new ArrayList<FoodItem>();
+
+        try{
+            Cursor cursor = db.rawQuery("select DATE, TITLE, CONTENTS, LOCATION from " + TABLE_FOOD_INFO, null);
+            for (int i = 0; i < cursor.getCount(); i++){
+                cursor.moveToNext();
+                String data = cursor.getString(0);
+                String title = cursor.getString(1);
+                String contents = cursor.getString(2);
+                String location = cursor.getString(3);
+
+                FoodItem item = new FoodItem(data, title, contents, location);
+                result.add(item);
+
+            }
+
+        }catch (Exception ex){
+            Log.e(TAG, "Exception in executing insert SQL.", ex);
+        }
+        return result;
+
+    }
 
     private void println(String msg) {
         Log.d(TAG, msg);
     }
-
-
-
 
 
 }

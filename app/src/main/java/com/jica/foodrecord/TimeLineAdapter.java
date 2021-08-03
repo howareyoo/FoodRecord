@@ -1,6 +1,5 @@
 package com.jica.foodrecord;
 
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 public class TimeLineAdapter extends RecyclerView.Adapter<TimeLineAdapter.ViewHolder> implements OnTimeLineSummaryClickListener{
-    ArrayList<TimeLineSummary> items = new ArrayList<TimeLineSummary>();
+    ArrayList<FoodItem> items = new ArrayList<FoodItem>();
 
     OnTimeLineSummaryClickListener listener;
 
@@ -28,16 +27,41 @@ public class TimeLineAdapter extends RecyclerView.Adapter<TimeLineAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull  TimeLineAdapter.ViewHolder viewHolder, int position) {
-        TimeLineSummary item = items.get(position);
-        viewHolder.setItem(item);
+    public void onBindViewHolder(@NonNull  TimeLineAdapter.ViewHolder holder, int position) {
+        FoodItem item = items.get(position);
+        holder.setItem(item);
 
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return items == null ? 0 : items.size();
+
     }
+
+
+    public void addItem(FoodItem item) {
+        items.add(item);
+    }
+
+    public void setItems(ArrayList<FoodItem> items) {
+        this.items = items;
+    }
+
+    public FoodItem getItem(int position) {
+        return items.get(position);
+    }
+
+    public void setItem(int position, FoodItem item) {
+        items.set(position, item);
+    }
+
+
+
+    public void OnTimeLineSummaryClickListener (OnTimeLineSummaryClickListener listener) {
+        this.listener = listener;
+    }
+
 
     @Override
     public void onItemClick(ViewHolder holder, View view, int position) {
@@ -49,54 +73,43 @@ public class TimeLineAdapter extends RecyclerView.Adapter<TimeLineAdapter.ViewHo
     static class ViewHolder extends RecyclerView.ViewHolder{
 
         TextView tvTimeLineDate;
-        TextView tvShowSummary;
+        TextView tvTitle;
+        TextView tvContents;
+        TextView tvLocation;
 
         public ViewHolder(@NonNull View itemView, final OnTimeLineSummaryClickListener listener) {
             super(itemView);
 
             tvTimeLineDate = itemView.findViewById(R.id.tvTimeLineDate);
-            tvShowSummary = itemView.findViewById(R.id.tvShowSummary);
+            tvTitle = itemView.findViewById(R.id.tvTitle);
+            tvContents = itemView.findViewById(R.id.tvContents);
+            tvLocation = itemView.findViewById(R.id.tvLocation);
+
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    int pos = getAdapterPosition();
+                    int position = getAdapterPosition();
 
                     if(listener !=null){
-                        listener.onItemClick(ViewHolder.this, v, pos);
+                        listener.onItemClick(ViewHolder.this, v, position);
 
                     }
                 }
             });
 
+        }
 
+        public void setItem(FoodItem item){
+            tvTimeLineDate.setText(item.getDate());
+            tvTitle.setText(item.getTitle());
+            tvContents.setText(item.getContents());
+            tvLocation.setText(item.getLocation());
 
         }
 
-        public void setItem(TimeLineSummary item){
-            tvTimeLineDate.setText(item.getTvTimeLineDate());
-            tvShowSummary.setText(item.getTvShowSummary());
-
-
-
-        }
 
     }
 
-    public void addItem(TimeLineSummary item){
-        items.add(item);
-    }
-
-    public void setItems(ArrayList<TimeLineSummary> items){
-        this.items = items;
-    }
-
-    public TimeLineSummary getItem(int position){
-        return items.get(position);
-    }
-
-    public void setItem(int position, TimeLineSummary item){
-        items.set(position,item);
-    }
 
 }

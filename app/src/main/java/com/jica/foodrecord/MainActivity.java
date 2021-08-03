@@ -5,16 +5,24 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
-public class MainActivity extends AppCompatActivity implements OnTabItemSelectedListener{
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements OnDatabaseCallback{
+
+    private static final String TAG = "MainActivity";
+
 
     MapFragment fragmentMap;
     TimeLineFragment fragmentTimeLine;
 
     BottomNavigationView bottomNavigation;
+
+    FoodDatabase database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,16 +57,55 @@ public class MainActivity extends AppCompatActivity implements OnTabItemSelected
 
         bottomNavigation.setSelectedItemId(R.id.map);
 
-    }
-
-    public void onTabSelected(int position){
-        if (position == 0){
-            bottomNavigation.setSelectedItemId(R.id.map);
-
-        }else if(position == 1){
-            bottomNavigation.setSelectedItemId(R.id.timeLine);
+        if(database != null){
+            database.close();
+            database = null;
         }
+
+        database = FoodDatabase.getInstance(this);
+        boolean isOpen = database.open();
+        if(isOpen){
+            Log.d(TAG, "Book database is open.");
+        }else {
+            Log.d(TAG, "Book database is not open.");
+        }
+
+
     }
+
+
+    protected void onDestroy() {
+        // close database
+        if (database != null) {
+            database.close();
+            database = null;
+        }
+
+        super.onDestroy();
+    }
+
+
+
+    @Override
+    public void insert(String date, String title, String contents, String location) {
+            database.insertRecord(date, title, contents, location);
+    }
+
+    @Override
+    public ArrayList<FoodItem> selectAll() {
+        ArrayList<FoodItem> result = database.selectAll();
+        return result;
+    }
+
+
+//    public void onTabSelected(int position){
+//        if (position == 0){
+//            bottomNavigation.setSelectedItemId(R.id.map);
+//
+//        }else if(position == 1){
+//            bottomNavigation.setSelectedItemId(R.id.timeLine);
+//        }
+//    }
 
 
 
