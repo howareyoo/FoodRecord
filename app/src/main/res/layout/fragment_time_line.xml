@@ -87,7 +87,7 @@
                     android:layout_marginBottom="8dp"
                     android:clickable="true"
                     android:src="@drawable/time_line_plus"
-                    android:visibility="invisible"
+                    android:visibility="gone"
                     app:backgroundTint="#0FB5D8"
                     app:fabSize="mini" />
 

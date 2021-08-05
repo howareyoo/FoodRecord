@@ -84,6 +84,8 @@ public class FoodDatabase {
         return true;
     }
 
+
+
     private class DatabaseHelper extends SQLiteOpenHelper {
         public DatabaseHelper( Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -104,6 +106,9 @@ public class FoodDatabase {
                     + "  _id INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT, "
                     + "  DATE TEXT, "
                     + "  TITLE TEXT, "
+                    + "  PICTURE TEXT, "
+                    + "  RATINGBAR FLOAT, "
+                    + "  TIME TEXT, "
                     + "  CONTENTS TEXT, "
                     + "  LOCATION TEXT, "
                     + "  CREATE_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP "
@@ -113,11 +118,6 @@ public class FoodDatabase {
             } catch(Exception ex) {
                 Log.e(TAG, "Exception in CREATE_SQL", ex);
             }
-
-
-            insertRecord(_db, "삼월칠일", "용성양", "맛있음", "전주");
-
-
 
 
 
@@ -138,9 +138,9 @@ public class FoodDatabase {
             }
         }
 
-        private void insertRecord(SQLiteDatabase _db, String date, String title, String contents , String location) {
+        private void insertRecord(SQLiteDatabase _db, String date, String title, String picture, float ratingbar, String  time ,String contents , String location) {
             try {
-                _db.execSQL( "insert into " + TABLE_FOOD_INFO + "(DATE, TITLE, CONTENTS, LOCATION) values ('" + date + "', '" + title + "', '" + contents + "', '" + location + "');" );
+                _db.execSQL( "insert into " + TABLE_FOOD_INFO + "(DATE, TITLE, PICTURE, RATINGBAR, TIME , CONTENTS, LOCATION) values ('" + date + "', '" + title + "', '" + picture + "' , '" + ratingbar + "','" + time + "','" + contents + "', '" + location + "');" );
             } catch(Exception ex) {
                 Log.e(TAG, "Exception in executing insert SQL.", ex);
             }
@@ -151,9 +151,9 @@ public class FoodDatabase {
     }
 
 
-    public void insertRecord(String date, String title, String contents, String location){
+    public void insertRecord(String date, String title,String picture, float ratingbar, String time, String contents, String location){
         try{
-            db.execSQL( "insert into " + TABLE_FOOD_INFO + "(DATE, TITLE, CONTENTS, LOCATION) values ('" + date + "', '" + title + "', '" + contents + "', '" + location + "');" );
+            db.execSQL( "insert into " + TABLE_FOOD_INFO + "(DATE, TITLE, PICTURE, RATINGBAR, TIME , CONTENTS, LOCATION) values ('" + date + "', '" + title + "', '" + picture + "' , '" + ratingbar + "','" + time + "','" + contents + "', '" + location + "');" );
         }catch (Exception ex){
             Log.e(TAG, "Exception in executing insert SQL.", ex);
         }
@@ -163,15 +163,18 @@ public class FoodDatabase {
         ArrayList<FoodItem> result = new ArrayList<FoodItem>();
 
         try{
-            Cursor cursor = db.rawQuery("select DATE, TITLE, CONTENTS, LOCATION from " + TABLE_FOOD_INFO, null);
+            Cursor cursor = db.rawQuery("select DATE, TITLE, PICTURE, RATINGBAR, TIME , CONTENTS, LOCATION from " + TABLE_FOOD_INFO, null);
             for (int i = 0; i < cursor.getCount(); i++){
                 cursor.moveToNext();
-                String data = cursor.getString(0);
+                String date = cursor.getString(0);
                 String title = cursor.getString(1);
-                String contents = cursor.getString(2);
-                String location = cursor.getString(3);
+                String picture = cursor.getString(2);
+                float ratingbar = cursor.getFloat(3);
+                String time = cursor.getString(4);
+                String contents = cursor.getString(5);
+                String location = cursor.getString(6);
 
-                FoodItem item = new FoodItem(data, title, contents, location);
+                FoodItem item = new FoodItem(date, title, picture, ratingbar, time ,contents, location);
                 result.add(item);
 
             }

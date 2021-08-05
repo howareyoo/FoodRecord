@@ -91,7 +91,7 @@
                         app:srcCompat="@drawable/edit_photo_background" />
 
                     <ImageView
-                        android:id="@+id/ivTakePhoto"
+                        android:id="@+id/ivTakePictureIcon"
                         android:layout_width="84dp"
                         android:layout_height="82dp"
                         android:layout_gravity="center"
@@ -229,6 +229,15 @@
                         android:background="@drawable/search_map" />
                 </LinearLayout>
 
+                <!--                <com.google.android.gms.maps.MapView-->
+                <!--                    android:id="@+id/edMapView"-->
+                <!--                    android:layout_width="match_parent"-->
+                <!--                    android:layout_height="232dp"-->
+                <!--                    android:layout_marginTop="37dp"-->
+                <!--                    android:layout_marginBottom="32dp"-->
+                <!--                    android:layout_weight="0"-->
+                <!--                    android:paddingLeft="5dp" />-->
+
                 <FrameLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -236,22 +245,13 @@
                     android:layout_marginTop="23dp"
                     android:layout_marginBottom="32dp">
 
-                    <fragment
-                        android:id="@+id/map"
-                        android:name="com.google.android.gms.maps.SupportMapFragment"
+                    <com.google.android.gms.maps.MapView
+                        android:id="@+id/mapView"
                         android:layout_width="match_parent"
-                        android:layout_height="232dp" />
+                        android:layout_height="200dp"/>
+
 
                 </FrameLayout>
-
-<!--                <com.google.android.gms.maps.MapView-->
-<!--                    android:id="@+id/edMapView"-->
-<!--                    android:layout_width="match_parent"-->
-<!--                    android:layout_height="232dp"-->
-<!--                    android:layout_marginTop="37dp"-->
-<!--                    android:layout_marginBottom="32dp"-->
-<!--                    android:layout_weight="0"-->
-<!--                    android:paddingLeft="5dp" />-->
 
                 <Button
                     android:id="@+id/btnDone"

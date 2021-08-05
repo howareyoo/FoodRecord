@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity implements OnDatabaseCallbac
 
     MapFragment fragmentMap;
     TimeLineFragment fragmentTimeLine;
+    EditFragment editFragment;
 
     BottomNavigationView bottomNavigation;
 
@@ -31,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements OnDatabaseCallbac
 
         fragmentMap = new MapFragment();
         fragmentTimeLine = new TimeLineFragment();
+        editFragment = new EditFragment();
 
 
 
@@ -50,12 +52,17 @@ public class MainActivity extends AppCompatActivity implements OnDatabaseCallbac
                         getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, fragmentTimeLine).commit();
 
                         return true;
+
+                    case R.id.edit:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.flContainer, editFragment).commit();
                 }
                 return false;
             }
         });
 
         bottomNavigation.setSelectedItemId(R.id.map);
+
+
 
         if(database != null){
             database.close();
@@ -84,16 +91,17 @@ public class MainActivity extends AppCompatActivity implements OnDatabaseCallbac
         super.onDestroy();
     }
 
-
-
     @Override
-    public void insert(String date, String title, String contents, String location) {
-            database.insertRecord(date, title, contents, location);
+    public void insert(String date, String title, String picture, float ratingbar, String time, String contents, String location) {
+        database.insertRecord(date, title, picture, ratingbar, time, contents,location);
     }
 
     @Override
     public ArrayList<FoodItem> selectAll() {
+
         ArrayList<FoodItem> result = database.selectAll();
+
+
         return result;
     }
 

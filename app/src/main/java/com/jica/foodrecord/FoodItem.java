@@ -5,30 +5,28 @@ package com.jica.foodrecord;
 public class FoodItem {
 
 
-  String date;
-  String title;
-  String contents;
-  String location;
+    String date;
+    String title;
+    String picture;
+    float ratingbar;
+    String time;
+    String contents;
+    String location;
 
     public FoodItem() {
     }
 
-    public FoodItem(String date, String title, String contents, String location) {
 
+    public FoodItem(String date, String title, String picture, float ratingbar, String time, String contents, String location) {
         this.date = date;
         this.title = title;
+        this.picture = picture;
+        this.ratingbar = ratingbar;
+        this.time = time;
         this.contents = contents;
         this.location = location;
-    }
 
-    public String getContents() {
-        return contents;
     }
-
-    public void setContents(String contents) {
-        this.contents = contents;
-    }
-
 
     public String getDate() {
         return date;
@@ -46,6 +44,38 @@ public class FoodItem {
         this.title = title;
     }
 
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public float getRatingbar() {
+        return ratingbar;
+    }
+
+    public void setRatingbar(float ratingbar) {
+        this.ratingbar = ratingbar;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getContents() {
+        return contents;
+    }
+
+    public void setContents(String contents) {
+        this.contents = contents;
+    }
+
     public String getLocation() {
         return location;
     }
@@ -54,13 +84,14 @@ public class FoodItem {
         this.location = location;
     }
 
-
-
     @Override
     public String toString() {
         return "FoodItem{" +
                 "date='" + date + '\'' +
                 ", title='" + title + '\'' +
+                ", picture='" + picture + '\'' +
+                ", ratingbar ='" + ratingbar + '\'' +
+                ", time ='" + time + '\'' +
                 ", contents='" + contents + '\'' +
                 ", location='" + location + '\'' +
                 '}';

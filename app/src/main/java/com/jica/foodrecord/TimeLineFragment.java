@@ -90,7 +90,7 @@ public class TimeLineFragment extends Fragment {
         FloatingActionButton fabMenu = (FloatingActionButton)rootView.findViewById(R.id.fabMenu);
         FloatingActionButton fabSetting = (FloatingActionButton)rootView.findViewById(R.id.fabSetting);
         FloatingActionButton fabStats = (FloatingActionButton)rootView.findViewById(R.id.fabStats);
-        FloatingActionButton fabPlus = (FloatingActionButton)rootView.findViewById(R.id.fabPlus);
+//        FloatingActionButton fabPlus = (FloatingActionButton)rootView.findViewById(R.id.fabPlus);
 
 
         fabMenu.setOnClickListener(new View.OnClickListener() {
@@ -105,24 +105,24 @@ public class TimeLineFragment extends Fragment {
                 if(isVisible){
                     fabSetting.setVisibility(View.VISIBLE);
                     fabStats.setVisibility(View.VISIBLE);
-                    fabPlus.setVisibility(View.VISIBLE);
+//                    fabPlus.setVisibility(View.VISIBLE);
                 }else {
                     fabSetting.setVisibility(View.INVISIBLE);
                     fabStats.setVisibility(View.INVISIBLE);
-                    fabPlus.setVisibility(View.INVISIBLE);
+//                    fabPlus.setVisibility(View.INVISIBLE);
 
                 }
             }
         });
 
 
-        fabPlus.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),EditActivity.class);
-                startActivity(intent);
-            }
-        });
+//        fabPlus.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(getActivity(),EditActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
         fabStats.setOnClickListener(new View.OnClickListener() {
             @Override

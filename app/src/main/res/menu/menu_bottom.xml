@@ -8,4 +8,8 @@
         android:id="@+id/timeLine"
         android:icon="@drawable/list_switch"
         android:title="timeLine" />
+    <item
+        android:id="@+id/edit"
+        android:icon="@drawable/time_line_plus"
+        android:title="edit" />
 </menu>

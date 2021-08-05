@@ -6,10 +6,17 @@
     android:paddingTop="30dp"
     tools:context=".BottomSheetCalendarFragment">
 
+    <TextView
+        android:id="@+id/tvChoseDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:hint="Chose date!" />
+
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_gravity="center|top" />
 
     <EditText
