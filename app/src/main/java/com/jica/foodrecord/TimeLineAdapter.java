@@ -113,7 +113,7 @@ public class TimeLineAdapter extends RecyclerView.Adapter<TimeLineAdapter.ViewHo
 //        TextView tvContents;
         TextView tvLocation;
 
-        OnDatabaseCallback callback;
+
 
         public ViewHolder(@NonNull View itemView, OnTimeLineSummaryClickListener listener) {
             super(itemView);

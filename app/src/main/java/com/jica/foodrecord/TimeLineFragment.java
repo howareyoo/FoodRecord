@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -39,13 +40,18 @@ import java.util.Locale;
 
 public class TimeLineFragment extends Fragment {
 
+
     RecyclerView recyclerView;
     TimeLineAdapter adapter;
     OnDatabaseCallback callback;
     TextView tvYear;
 
 
-
+    EditText etTodayDate;
+    TextView tvTodayLocation;
+    TextView tvTodayTime;
+    TextView tvTodayWho;
+    CheckBox cbTodayDrink;
 
 
 
@@ -89,6 +95,7 @@ public class TimeLineFragment extends Fragment {
         adapter = new TimeLineAdapter();
         recyclerView.setAdapter(adapter);
 
+        //데이터 불러오기
         ArrayList<FoodItem> result = callback.selectAll();
         adapter.setItems(result);
 
@@ -158,6 +165,27 @@ public class TimeLineFragment extends Fragment {
         String year = yearFormat.format(currentYear);
 
         tvYear.setText(year);
+
+
+
+        //상단 화면 보이기
+
+        etTodayDate = rootView.findViewById(R.id.etTodayDate);
+
+
+        SimpleDateFormat todayFormat = new SimpleDateFormat("yyyy. MM. dd. EE", Locale.getDefault());
+        String todayDate = todayFormat.format(currentYear);
+
+        etTodayDate.setText(todayDate);
+
+//        SimpleDateFormat today = new SimpleDateFormat("M.d", Locale.getDefault());
+//        String todayDate2 = todayFormat.format(currentYear);
+
+
+
+
+
+
 
 
 

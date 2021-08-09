@@ -8,27 +8,39 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
+import android.location.Address;
+import android.location.Geocoder;
+import android.location.Location;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     GoogleMap map;
     private MapView mapView;
+    MarkerOptions myMarker;
 
     RecyclerView recyclerView;
     MapInformationAdapter adapter;
 
     OnDatabaseCallback callback;
+
+    Context context;
 
 
 
@@ -48,11 +60,15 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup flContainer, Bundle savedInstanceState){
          ViewGroup rootview = (ViewGroup) inflater.inflate(R.layout.fragment_map, flContainer, false);
 
+        context = flContainer.getContext();
+
          //지도생성
 
          mapView = rootview.findViewById(R.id.mapView2);
          mapView.onCreate(savedInstanceState);
          mapView.getMapAsync(this::onMapReady);
+
+
 
 
         //리사이클러뷰
@@ -72,10 +88,37 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         adapter.setItems(result);
 
 
+        //리사이클러뷰 클릭시 장소 이동
+
+        adapter.setItemClickListener(new OnMapInformationClickListener() {
+            @Override
+            public void onItemClick(MapInformationAdapter.ViewHolder holder, View view, int position) {
+
+
+               FoodItem item = adapter.getItem(position);
+
+               String findLocation = item.getLocation();
+
+
+                Toast.makeText(context, "click" + findLocation, Toast.LENGTH_LONG).show();
+
+               Location location = getLocationFromAddress(context, findLocation.toString());
+               showCurrentLocation(location);
+
+
+
+
+            }
+        });
+
+
 
 
         return rootview;
     }
+
+
+    //지도
 
     @Override
     public void onStart() {
@@ -131,4 +174,60 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
 
     }
+
+
+
+
+    private Location getLocationFromAddress(Context context, String address) {
+        Geocoder geocoder = new Geocoder(context);
+        List<Address> addresses;
+        Location resLocation = new Location("");
+        try {
+            addresses = geocoder.getFromLocationName(address, 5);
+            if ((addresses == null) || (addresses.size() == 0)) {
+                return null;
+            }
+            Address addressLoc = addresses.get(0);
+
+            resLocation.setLatitude(addressLoc.getLatitude());
+            resLocation.setLongitude(addressLoc.getLongitude());
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return resLocation;
+    }
+
+
+
+    private void showCurrentLocation(Location location) {
+        LatLng curPoint = new LatLng(location.getLatitude(), location.getLongitude());
+        String msg = "Latitutde : " + curPoint.latitude
+                + "\nLongitude : " + curPoint.longitude;
+        Toast.makeText(context, msg, Toast.LENGTH_SHORT).show();
+
+        //화면 확대, 숫자가 클수록 확대
+        map.animateCamera(CameraUpdateFactory.newLatLngZoom(curPoint, 15));
+
+        //마커 찍기
+        Location targetLocation = new Location("");
+        targetLocation.setLatitude(curPoint.latitude);
+        targetLocation.setLongitude(curPoint.longitude);
+        showMyMarker(targetLocation);
+    }
+
+
+
+    private void showMyMarker(Location location) {
+        if (myMarker == null) {
+            myMarker = new MarkerOptions();
+            myMarker.position(new LatLng(location.getLatitude(), location.getLongitude()));
+            myMarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_pointer));
+            map.addMarker(myMarker);
+        }
+    }
+
+
+
+
 }

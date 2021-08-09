@@ -21,15 +21,112 @@
         android:inputType="textPersonName" />
 
     <FrameLayout
+        android:id="@+id/flToday"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_marginBottom="32dp">
 
         <ImageView
-            android:id="@+id/imageView5"
+            android:id="@+id/ivShow"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/empty_box" />
+
+        <EditText
+            android:id="@+id/etTodayDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="15dp"
+            android:background="@null"
+            android:ems="10"
+            android:hint="TODAY DATE"
+            android:inputType="date"
+            android:textAllCaps="false"
+            android:textColor="#505050"
+            android:textSize="15dp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="45dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView19"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_weight="0"
+                android:src="@drawable/time_line_map_pointer" />
+
+            <TextView
+                android:id="@+id/tvTodayLocation"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:hint="WHERE"
+                android:textColor="#505050" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="75dp"
+            android:layout_marginBottom="15dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/imageView15"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_weight="1"
+                android:src="@drawable/time_line_clock" />
+
+            <TextView
+                android:id="@+id/tvTodayTime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:hint="TIME"
+                android:textColor="#505050" />
+
+            <ImageView
+                android:id="@+id/imageView17"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_weight="1"
+                android:src="@drawable/time_line_person" />
+
+            <TextView
+                android:id="@+id/tvTodayWho"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_weight="1"
+                android:hint="MEMBER"
+                android:textColor="#505050" />
+
+            <ImageView
+                android:id="@+id/imageView18"
+                android:layout_width="15dp"
+                android:layout_height="15dp"
+                android:layout_weight="1"
+                android:src="@drawable/time_line_beer" />
+
+            <CheckBox
+                android:id="@+id/cbTodayDrink"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent" />
+
+        </LinearLayout>
 
     </FrameLayout>
 
