@@ -174,16 +174,12 @@ public class FoodDatabase {
     public void deleteRecord(int _id){
         try{
             db.execSQL("DELETE FROM FOOD_INFO WHERE _id=" + _id);
+            Log.d(TAG, _id + " 자료의 row를 삭제했습니다.");
 
         }catch (Exception ex){
             Log.e(TAG, "Exception in executing delete SQL.", ex);
         }
     }
-
-
-
-
-
 
 
 
@@ -200,21 +196,23 @@ public class FoodDatabase {
         ArrayList<FoodItem> result = new ArrayList<FoodItem>();
 
         try{
-            Cursor cursor = db.rawQuery("select DATE, TITLE, PICTURE, RATINGBAR, TIME, PERSONNEL, CONTENTS, LOCATION from " + TABLE_FOOD_INFO, null);
+            Cursor cursor = db.rawQuery("select _id,DATE, TITLE, PICTURE, RATINGBAR, TIME, PERSONNEL, CONTENTS, LOCATION from " + TABLE_FOOD_INFO, null);
             for (int i = 0; i < cursor.getCount(); i++){
                 cursor.moveToNext();
-                String date = cursor.getString(0);
-                String title = cursor.getString(1);
-                String picture = cursor.getString(2);
-                float ratingbar = cursor.getFloat(3);
-                String time = cursor.getString(4);
-                String personnel = cursor.getString(5);
-                String contents = cursor.getString(6);
-                String location = cursor.getString(7);
+
+                int _id = cursor.getInt(0);
+                String date = cursor.getString(1);
+                String title = cursor.getString(2);
+                String picture = cursor.getString(3);
+                float ratingbar = cursor.getFloat(4);
+                String time = cursor.getString(5);
+                String personnel = cursor.getString(6);
+                String contents = cursor.getString(7);
+                String location = cursor.getString(8);
 
 
 
-                FoodItem item = new FoodItem(date, title, picture, ratingbar, time, personnel,contents, location);
+                FoodItem item = new FoodItem(_id,date, title, picture, ratingbar, time, personnel,contents, location);
                 result.add(item);
 
             }

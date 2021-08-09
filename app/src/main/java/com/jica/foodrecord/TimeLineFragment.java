@@ -130,11 +130,15 @@ public class TimeLineFragment extends Fragment {
                 btnDataDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                      //데이타베이스에서 제거
+                      int _id = item.get_id();
+                      callback.delete(_id);
 
+                      //리싸이클러뷰의 원본에서 제거
                       adapter.deleteItem(position);
                       adapter.notifyItemRemoved(position);
 
-                        Toast.makeText(context, "delete", Toast.LENGTH_LONG).show();
+                      Toast.makeText(context, "delete", Toast.LENGTH_LONG).show();
                     }
                 });
 

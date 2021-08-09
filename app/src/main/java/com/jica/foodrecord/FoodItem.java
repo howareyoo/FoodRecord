@@ -4,7 +4,7 @@ package com.jica.foodrecord;
 
 public class FoodItem {
 
-
+    int _id;
     String date;
     String title;
     String picture;
@@ -20,7 +20,8 @@ public class FoodItem {
     }
 
 
-    public FoodItem(String date, String title, String picture, float ratingbar, String time, String personnel,String contents, String location) {
+    public FoodItem(int _id, String date, String title, String picture, float ratingbar, String time, String personnel,String contents, String location) {
+        this._id = _id;
         this.date = date;
         this.title = title;
         this.picture = picture;
@@ -31,6 +32,14 @@ public class FoodItem {
         this.contents = contents;
         this.location = location;
 
+    }
+
+    public int get_id() {
+        return _id;
+    }
+
+    public void set_id(int _id) {
+        this._id = _id;
     }
 
     public String getPersonnel() {
