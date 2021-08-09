@@ -10,23 +10,28 @@ public class FoodItem {
     String picture;
     float ratingbar;
     String time;
+
     String contents;
     String location;
+
+
 
     public FoodItem() {
     }
 
 
-    public FoodItem(String date, String title, String picture, float ratingbar, String time, String contents, String location) {
+    public FoodItem(String date, String title, String picture, float ratingbar, String time,String contents, String location) {
         this.date = date;
         this.title = title;
         this.picture = picture;
         this.ratingbar = ratingbar;
         this.time = time;
+
         this.contents = contents;
         this.location = location;
 
     }
+
 
     public String getDate() {
         return date;

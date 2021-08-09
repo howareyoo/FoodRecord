@@ -2,39 +2,55 @@ package com.jica.foodrecord;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
 import java.lang.annotation.Annotation;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class TimeLineFragment extends Fragment {
 
     RecyclerView recyclerView;
     TimeLineAdapter adapter;
     OnDatabaseCallback callback;
+    TextView tvYear;
+
+
+
+
+
+
 
     Context context;
-//    OnTabItemSelectedListener listener;
-
-
 
 
 
@@ -42,23 +58,16 @@ public class TimeLineFragment extends Fragment {
     public void onAttach(@NonNull  Context context) {
         super.onAttach(context);
 
+
         callback = (OnDatabaseCallback) getActivity();
-//
-//        this.context = context;
-//        if(context instanceof OnTabItemSelectedListener){
-//            listener = (OnTabItemSelectedListener) context;
-//        }
+
 
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
-//
-//        if (context != null){
-//            context = null;
-//            listener = null;
-//        }
+
 
     }
 
@@ -66,9 +75,9 @@ public class TimeLineFragment extends Fragment {
         ViewGroup rootView = (ViewGroup) inflater.inflate(R.layout.fragment_time_line, flContainer, false);
 
 
+        context = flContainer.getContext();
 
-
-
+        //리사이클러뷰
         recyclerView  = rootView.findViewById(R.id.rvTimeLine);
 
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
@@ -76,7 +85,6 @@ public class TimeLineFragment extends Fragment {
 
         RecyclerDecoration spaceDecoration = new RecyclerDecoration(25);
         recyclerView.addItemDecoration(spaceDecoration);
-
 
         adapter = new TimeLineAdapter();
         recyclerView.setAdapter(adapter);
@@ -86,6 +94,73 @@ public class TimeLineFragment extends Fragment {
 
 
 
+
+        //리사이클러뷰 클릭시 다이얼로그 show
+
+        adapter.setItemClickListener(new OnTimeLineSummaryClickListener() {
+            @Override
+            public void onItemClick(TimeLineAdapter.ViewHolder holder, View view, int position) {
+                FoodItem item = adapter.getItem(position);
+
+                final  View dialogBView = inflater.inflate(R.layout.timeline_dialog, null);
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(context)
+                        .setView(dialogBView);
+
+                final AlertDialog dialog = builder.create();
+
+                dialog.setCanceledOnTouchOutside(true);
+
+                dialog.show();
+
+            //버튼 클릭시 이벤트 발생
+
+                Button btnDataUpdate = dialogBView.findViewById(R.id.btnDataUpdate);
+                btnDataUpdate.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+
+
+                        Toast.makeText(context, "click", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                Button btnDataDelete = dialogBView.findViewById(R.id.btnDataDelete);
+                btnDataDelete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+//                      String _id =
+//
+//                       callback.delete(_id);
+
+                      adapter.deleteItem(position);
+                      adapter.notifyItemRemoved(position);
+
+                        Toast.makeText(context, "delete", Toast.LENGTH_LONG).show();
+                    }
+                });
+
+                Toast.makeText(context, "clicked" +item.getTitle(), Toast.LENGTH_LONG ).show();
+            }
+        });
+
+
+
+
+        //올해 년도 가지고 오기
+        tvYear = rootView.findViewById(R.id.tvYear);
+
+        Date currentYear = Calendar.getInstance().getTime();
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+
+        String year = yearFormat.format(currentYear);
+
+        tvYear.setText(year);
+
+
+
+        //플로팅액션바
 
         FloatingActionButton fabMenu = (FloatingActionButton)rootView.findViewById(R.id.fabMenu);
         FloatingActionButton fabSetting = (FloatingActionButton)rootView.findViewById(R.id.fabSetting);
@@ -140,18 +215,9 @@ public class TimeLineFragment extends Fragment {
             }
         });
 
-
-
-
-
-
         return rootView;
 
-
-
     }
-
-
 
 
 }

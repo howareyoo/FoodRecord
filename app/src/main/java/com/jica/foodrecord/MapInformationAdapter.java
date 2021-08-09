@@ -13,7 +13,7 @@ import java.util.Map;
 
 public class MapInformationAdapter extends RecyclerView.Adapter<MapInformationAdapter.ViewHolder>{
 
-    ArrayList<MapInformation> items = new ArrayList<MapInformation>();
+    ArrayList<FoodItem> items = new ArrayList<FoodItem>();
 
     @NonNull
 
@@ -28,16 +28,25 @@ public class MapInformationAdapter extends RecyclerView.Adapter<MapInformationAd
 
     @Override
     public void onBindViewHolder(@NonNull MapInformationAdapter.ViewHolder viewHolder, int position) {
-        MapInformation item = items.get(position);
+        FoodItem item = items.get(position);
         viewHolder.setItem(item);
-
 
     }
 
     @Override
     public int getItemCount() {
-        return items.size();
+        return items == null ? 0 : items.size();
     }
+
+
+    public ArrayList<FoodItem> getItems() {
+        return items;
+    }
+
+    public void setItems(ArrayList<FoodItem> items) {
+        this.items = items;
+    }
+
 
     static class ViewHolder extends RecyclerView.ViewHolder{
         TextView tvMapInfo;
@@ -49,29 +58,12 @@ public class MapInformationAdapter extends RecyclerView.Adapter<MapInformationAd
 
         }
 
-        public void setItem(MapInformation item){
-            tvMapInfo.setText(item.getMapInformation());
+        public void setItem(FoodItem item){
+            tvMapInfo.setText(item.getLocation());
         }
 
-
-
     }
 
-    public void addItem(MapInformation item){
-        items.add(item);
-    }
-
-    public void setItems(ArrayList<MapInformation> items){
-        this.items = items;
-    }
-
-    public MapInformation getItem(int position){
-        return items.get(position);
-    }
-
-    public void setItem(int position, MapInformation item) {
-        items.set(position, item);
-    }
 
 
 

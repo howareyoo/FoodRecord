@@ -41,27 +41,20 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
                 android:layout_weight="1"
-                android:text="TextView"
-                android:textAlignment="center" />
-
-            <TextView
-                android:id="@+id/tvContents"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_weight="1"
-                android:text="TextView"
-                android:textAlignment="center" />
+                android:textAlignment="gravity" />
 
             <TextView
                 android:id="@+id/tvLocation"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
+                android:layout_marginLeft="13dp"
+                android:layout_marginRight="13dp"
                 android:layout_weight="1"
-                android:text="TextView"
-                android:textAlignment="center" />
+                android:textAlignment="gravity" />
         </LinearLayout>
 
     </LinearLayout>

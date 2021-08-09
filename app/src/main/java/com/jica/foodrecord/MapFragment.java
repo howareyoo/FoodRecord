@@ -7,6 +7,7 @@ import androidx.lifecycle.Lifecycle;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.OnMapReadyCallback;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 public class MapFragment extends Fragment implements OnMapReadyCallback {
@@ -26,9 +28,17 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     RecyclerView recyclerView;
     MapInformationAdapter adapter;
 
+    OnDatabaseCallback callback;
 
 
 
+
+    @Override
+    public void onAttach(@NonNull  Context context) {
+
+        callback = (OnDatabaseCallback) getActivity();
+        super.onAttach(context);
+    }
 
     @Override
     public void onCreate(@Nullable  Bundle savedInstanceState) {
@@ -38,11 +48,14 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup flContainer, Bundle savedInstanceState){
          ViewGroup rootview = (ViewGroup) inflater.inflate(R.layout.fragment_map, flContainer, false);
 
+         //지도생성
+
          mapView = rootview.findViewById(R.id.mapView2);
          mapView.onCreate(savedInstanceState);
          mapView.getMapAsync(this::onMapReady);
 
 
+        //리사이클러뷰
 
         recyclerView = (RecyclerView) rootview.findViewById(R.id.rvMapInfo);
 
@@ -53,15 +66,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
         recyclerView.addItemDecoration(spaceDecoration);
 
         adapter = new MapInformationAdapter();
-
-        adapter.addItem(new MapInformation("부송국수"));
-        adapter.addItem(new MapInformation("용성양"));
-        adapter.addItem(new MapInformation("후켄"));
-        adapter.addItem(new MapInformation("후켄"));
-        adapter.addItem(new MapInformation("후켄"));
-
-
         recyclerView.setAdapter(adapter);
+
+        ArrayList<FoodItem> result = callback.selectAll();
+        adapter.setItems(result);
 
 
 

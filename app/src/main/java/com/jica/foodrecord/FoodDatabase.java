@@ -138,7 +138,7 @@ public class FoodDatabase {
             }
         }
 
-        private void insertRecord(SQLiteDatabase _db, String date, String title, String picture, float ratingbar, String  time ,String contents , String location) {
+        private void insertRecord(SQLiteDatabase _db, String date, String title, String picture, float ratingbar, String  time, String contents , String location) {
             try {
                 _db.execSQL( "insert into " + TABLE_FOOD_INFO + "(DATE, TITLE, PICTURE, RATINGBAR, TIME , CONTENTS, LOCATION) values ('" + date + "', '" + title + "', '" + picture + "' , '" + ratingbar + "','" + time + "','" + contents + "', '" + location + "');" );
             } catch(Exception ex) {
@@ -146,14 +146,50 @@ public class FoodDatabase {
             }
         }
 
+      private void deleteRecord(SQLiteDatabase _db, int  _id){
+                try{
+                   _db.execSQL("DELETE FROM FOOD_INFO WHERE _id=" + _id);
+                }catch (Exception ex){
+                    Log.e(TAG, "Exception in executing delete SQL.", ex);
+                }
+      }
+
+
+//        public Integer deleteRecord(String _id){
+//            SQLiteDatabase _db = this.getWritableDatabase();
+//            return _db.delete(TABLE_FOOD_INFO, "ID = ?", new String[] {_id});
+//        }
+
+//        public void deleteData(SQLiteDatabase _db, String _id){
+//            _db = this.getWritableDatabase();
+//            _db.delete(TABLE_FOOD_INFO, "ID = ?", new String[] {_id});
+//        }
+
+
 
 
     }
 
+    public void deleteRecord(int _id){
+        try{
+            db.execSQL("DELETE FROM FOOD_INFO WHERE _id=" + _id);
+
+        }catch (Exception ex){
+            Log.e(TAG, "Exception in executing delete SQL.", ex);
+        }
+    }
+
+
+
+
+
+
+
+
 
     public void insertRecord(String date, String title,String picture, float ratingbar, String time, String contents, String location){
         try{
-            db.execSQL( "insert into " + TABLE_FOOD_INFO + "(DATE, TITLE, PICTURE, RATINGBAR, TIME , CONTENTS, LOCATION) values ('" + date + "', '" + title + "', '" + picture + "' , '" + ratingbar + "','" + time + "','" + contents + "', '" + location + "');" );
+            db.execSQL( "insert into " + TABLE_FOOD_INFO + "(DATE, TITLE, PICTURE, RATINGBAR, TIME, CONTENTS, LOCATION) values ('" + date + "', '" + title + "', '" + picture + "' , '" + ratingbar + "','" + time + "','" + contents + "', '" + location + "');" );
         }catch (Exception ex){
             Log.e(TAG, "Exception in executing insert SQL.", ex);
         }
@@ -163,7 +199,7 @@ public class FoodDatabase {
         ArrayList<FoodItem> result = new ArrayList<FoodItem>();
 
         try{
-            Cursor cursor = db.rawQuery("select DATE, TITLE, PICTURE, RATINGBAR, TIME , CONTENTS, LOCATION from " + TABLE_FOOD_INFO, null);
+            Cursor cursor = db.rawQuery("select DATE, TITLE, PICTURE, RATINGBAR, TIME, CONTENTS, LOCATION from " + TABLE_FOOD_INFO, null);
             for (int i = 0; i < cursor.getCount(); i++){
                 cursor.moveToNext();
                 String date = cursor.getString(0);
@@ -174,7 +210,9 @@ public class FoodDatabase {
                 String contents = cursor.getString(5);
                 String location = cursor.getString(6);
 
-                FoodItem item = new FoodItem(date, title, picture, ratingbar, time ,contents, location);
+
+
+                FoodItem item = new FoodItem(date, title, picture, ratingbar, time, contents, location);
                 result.add(item);
 
             }

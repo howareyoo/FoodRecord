@@ -17,7 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
-
+import java.text.SimpleDateFormat;
 
 
 public class BottomSheetCalendarFragment extends BottomSheetDialogFragment {
@@ -25,6 +25,7 @@ public class BottomSheetCalendarFragment extends BottomSheetDialogFragment {
     private Context context;
     Button btnComplete;
     TextView tvChoseDate;
+
     CalendarView calendarView;
 
     @Override
@@ -39,12 +40,17 @@ public class BottomSheetCalendarFragment extends BottomSheetDialogFragment {
 
 
 
+
        calendarView.setOnDateChangeListener(new CalendarView.OnDateChangeListener() {
            @Override
            public void onSelectedDayChange(@NonNull CalendarView view, int year, int month, int dayOfMonth) {
 
-               String date = year + "." + (month + 1) + "." + dayOfMonth;
+
+
+               String date = (month + 1) + "." + dayOfMonth;
+
                Log.d("TAG", date);
+
 
                tvChoseDate.setText(date);
 
@@ -56,6 +62,8 @@ public class BottomSheetCalendarFragment extends BottomSheetDialogFragment {
 
            }
        });
+
+
 
 
        btnComplete.setOnClickListener(new View.OnClickListener() {

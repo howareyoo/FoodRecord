@@ -2,8 +2,9 @@ package com.jica.foodrecord;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
 
+
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -72,9 +73,9 @@ public class MainActivity extends AppCompatActivity implements OnDatabaseCallbac
         database = FoodDatabase.getInstance(this);
         boolean isOpen = database.open();
         if(isOpen){
-            Log.d(TAG, "Book database is open.");
+            Log.d(TAG, "Food database is open.");
         }else {
-            Log.d(TAG, "Book database is not open.");
+            Log.d(TAG, "Food database is not open.");
         }
 
 
@@ -97,6 +98,13 @@ public class MainActivity extends AppCompatActivity implements OnDatabaseCallbac
     }
 
     @Override
+    public void delete(int _id) {
+        database.deleteRecord(_id);
+    }
+
+
+
+    @Override
     public ArrayList<FoodItem> selectAll() {
 
         ArrayList<FoodItem> result = database.selectAll();
@@ -106,14 +114,15 @@ public class MainActivity extends AppCompatActivity implements OnDatabaseCallbac
     }
 
 
-//    public void onTabSelected(int position){
-//        if (position == 0){
-//            bottomNavigation.setSelectedItemId(R.id.map);
-//
-//        }else if(position == 1){
-//            bottomNavigation.setSelectedItemId(R.id.timeLine);
-//        }
-//    }
+
+    public void onTabSelected(int position){
+        if (position == 0){
+            bottomNavigation.setSelectedItemId(R.id.map);
+
+        }else if(position == 1){
+            bottomNavigation.setSelectedItemId(R.id.timeLine);
+        }
+    }
 
 
 
