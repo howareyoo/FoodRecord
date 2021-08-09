@@ -130,9 +130,6 @@ public class TimeLineFragment extends Fragment {
                 btnDataDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-//                      String _id =
-//
-//                       callback.delete(_id);
 
                       adapter.deleteItem(position);
                       adapter.notifyItemRemoved(position);

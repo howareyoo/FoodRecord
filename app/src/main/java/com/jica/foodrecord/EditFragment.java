@@ -219,7 +219,7 @@ public class EditFragment extends Fragment implements OnMapReadyCallback {
         //인원수
         etPersonnel = rootView.findViewById(R.id.etPersonnel);
 
-        etPersonnel.getText();
+
 
         //알콜여부
         checkBoxDrink = rootView.findViewById(R.id.checkBoxDrink);
@@ -268,11 +268,11 @@ public class EditFragment extends Fragment implements OnMapReadyCallback {
                 String picture = uri.toString();
                 float ratingbar = ratingBar.getRating();
                 String time = btnTimePicker.getText().toString();
-
+                String personnel = etPersonnel.getText().toString();
                 String contents = editText.getText().toString();
                 String location = etSearch.getText().toString();
 
-                callback.insert(date,title, picture, ratingbar, time,  contents, location);
+                callback.insert(date,title, picture, ratingbar, time, personnel, contents, location);
 
                 MainActivity mainActivity = (MainActivity) getActivity();
                 mainActivity.onTabSelected(1);

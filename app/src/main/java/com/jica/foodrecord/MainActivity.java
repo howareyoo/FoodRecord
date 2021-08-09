@@ -93,8 +93,8 @@ public class MainActivity extends AppCompatActivity implements OnDatabaseCallbac
     }
 
     @Override
-    public void insert(String date, String title, String picture, float ratingbar, String time, String contents, String location) {
-        database.insertRecord(date, title, picture, ratingbar, time, contents,location);
+    public void insert(String date, String title, String picture, float ratingbar, String time, String personnel, String contents, String location) {
+        database.insertRecord(date, title, picture, ratingbar, time,personnel, contents,location);
     }
 
     @Override

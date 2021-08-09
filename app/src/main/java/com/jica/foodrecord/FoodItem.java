@@ -10,7 +10,7 @@ public class FoodItem {
     String picture;
     float ratingbar;
     String time;
-
+    String personnel;
     String contents;
     String location;
 
@@ -20,18 +20,26 @@ public class FoodItem {
     }
 
 
-    public FoodItem(String date, String title, String picture, float ratingbar, String time,String contents, String location) {
+    public FoodItem(String date, String title, String picture, float ratingbar, String time, String personnel,String contents, String location) {
         this.date = date;
         this.title = title;
         this.picture = picture;
         this.ratingbar = ratingbar;
         this.time = time;
+        this.personnel = personnel;
 
         this.contents = contents;
         this.location = location;
 
     }
 
+    public String getPersonnel() {
+        return personnel;
+    }
+
+    public void setPersonnel(String personnel) {
+        this.personnel = personnel;
+    }
 
     public String getDate() {
         return date;
@@ -97,6 +105,7 @@ public class FoodItem {
                 ", picture='" + picture + '\'' +
                 ", ratingbar ='" + ratingbar + '\'' +
                 ", time ='" + time + '\'' +
+                ", personnel ='" + personnel + '\'' +
                 ", contents='" + contents + '\'' +
                 ", location='" + location + '\'' +
                 '}';
