@@ -110,6 +110,7 @@ public class FoodDatabase {
                     + "  RATINGBAR FLOAT, "
                     + "  TIME TEXT, "
                     + "  PERSONNEL TEXT, "
+                    + "  DRINK TEXT, "
                     + "  CONTENTS TEXT, "
                     + "  LOCATION TEXT, "
                     + "  CREATE_DATE TIMESTAMP DEFAULT CURRENT_TIMESTAMP "
@@ -139,9 +140,9 @@ public class FoodDatabase {
             }
         }
 
-        private void insertRecord(SQLiteDatabase _db, String date, String title, String picture, float ratingbar, String  time, String personnel, String contents , String location) {
+        private void insertRecord(SQLiteDatabase _db, String date, String title, String picture, float ratingbar, String  time, String personnel, String drink ,String contents , String location) {
             try {
-                _db.execSQL( "insert into " + TABLE_FOOD_INFO + "(DATE, TITLE, PICTURE, RATINGBAR, TIME , PERSONNEL, CONTENTS, LOCATION) values ('" + date + "', '" + title + "', '" + picture + "' , '" + ratingbar + "','" + time + "','" + personnel + "','" + contents + "', '" + location + "');" );
+                _db.execSQL( "insert into " + TABLE_FOOD_INFO + "(DATE, TITLE, PICTURE, RATINGBAR, TIME , PERSONNEL, DRINK, CONTENTS, LOCATION) values ('" + date + "', '" + title + "', '" + picture + "' , '" + ratingbar + "','" + time + "','" + personnel + "','" + contents + "', '" + location + "');" );
             } catch(Exception ex) {
                 Log.e(TAG, "Exception in executing insert SQL.", ex);
             }
@@ -154,17 +155,6 @@ public class FoodDatabase {
                     Log.e(TAG, "Exception in executing delete SQL.", ex);
                 }
       }
-
-
-//        public Integer deleteRecord(String _id){
-//            SQLiteDatabase _db = this.getWritableDatabase();
-//            return _db.delete(TABLE_FOOD_INFO, "ID = ?", new String[] {_id});
-//        }
-
-//        public void deleteData(SQLiteDatabase _db, String _id){
-//            _db = this.getWritableDatabase();
-//            _db.delete(TABLE_FOOD_INFO, "ID = ?", new String[] {_id});
-//        }
 
 
 
@@ -212,7 +202,7 @@ public class FoodDatabase {
 
 
 
-                FoodItem item = new FoodItem(_id,date, title, picture, ratingbar, time, personnel,contents, location);
+                FoodItem item = new FoodItem(_id, date, title, picture, ratingbar, time, personnel,contents, location);
                 result.add(item);
 
             }

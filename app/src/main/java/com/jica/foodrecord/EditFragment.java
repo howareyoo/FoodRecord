@@ -223,7 +223,35 @@ public class EditFragment extends Fragment implements OnMapReadyCallback {
 
         //알콜여부
         checkBoxDrink = rootView.findViewById(R.id.checkBoxDrink);
-        checkBoxDrink.getText();
+
+
+        checkBoxDrink.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String checkResult ;
+
+                if( checkBoxDrink.isChecked()){
+
+                    checkResult = String.valueOf(checkBoxDrink.isChecked());
+
+                    Toast.makeText(context, "checked "+ checkResult , Toast.LENGTH_SHORT).show();
+
+                }else {
+
+                    checkResult = String.valueOf(checkBoxDrink.isChecked());
+                    Toast.makeText(context, "checked " + checkResult, Toast.LENGTH_SHORT).show();
+                }
+
+
+                checkBoxDrink.setText(checkResult);
+
+
+            }
+        });
+
+
+
 
         //내용
         editText = rootView.findViewById(R.id.editText);

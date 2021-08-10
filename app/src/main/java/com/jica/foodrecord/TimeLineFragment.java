@@ -130,6 +130,7 @@ public class TimeLineFragment extends Fragment {
 
 
                         Toast.makeText(context, "click", Toast.LENGTH_LONG).show();
+                        dialog.hide();
                     }
                 });
 
@@ -146,6 +147,9 @@ public class TimeLineFragment extends Fragment {
                       adapter.notifyItemRemoved(position);
 
                       Toast.makeText(context, "delete", Toast.LENGTH_LONG).show();
+
+                      dialog.hide();
+
                     }
                 });
 
@@ -178,9 +182,11 @@ public class TimeLineFragment extends Fragment {
 
         etTodayDate.setText(todayDate);
 
-//        SimpleDateFormat today = new SimpleDateFormat("M.d", Locale.getDefault());
-//        String todayDate2 = todayFormat.format(currentYear);
+        SimpleDateFormat today = new SimpleDateFormat("M.d", Locale.getDefault());
+        String todayDate2 = todayFormat.format(currentYear);
 
+
+        
 
 
 

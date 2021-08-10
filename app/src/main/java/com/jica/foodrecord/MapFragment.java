@@ -219,12 +219,10 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
 
     private void showMyMarker(Location location) {
-        if (myMarker == null) {
-            myMarker = new MarkerOptions();
-            myMarker.position(new LatLng(location.getLatitude(), location.getLongitude()));
-            myMarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_pointer));
-            map.addMarker(myMarker);
-        }
+        myMarker = new MarkerOptions();
+        myMarker.position(new LatLng(location.getLatitude(), location.getLongitude()));
+        myMarker.icon(BitmapDescriptorFactory.fromResource(R.drawable.map_pointer));
+        map.addMarker(myMarker);
     }
 
 
