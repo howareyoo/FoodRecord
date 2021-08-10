@@ -297,10 +297,11 @@ public class EditFragment extends Fragment implements OnMapReadyCallback {
                 float ratingbar = ratingBar.getRating();
                 String time = btnTimePicker.getText().toString();
                 String personnel = etPersonnel.getText().toString();
+                String drink = checkBoxDrink.getText().toString();
                 String contents = editText.getText().toString();
                 String location = etSearch.getText().toString();
 
-                callback.insert(date,title, picture, ratingbar, time, personnel, contents, location);
+                callback.insert(date,title, picture, ratingbar, time, personnel, drink, contents, location);
 
                 MainActivity mainActivity = (MainActivity) getActivity();
                 mainActivity.onTabSelected(1);

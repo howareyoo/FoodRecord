@@ -142,7 +142,7 @@ public class FoodDatabase {
 
         private void insertRecord(SQLiteDatabase _db, String date, String title, String picture, float ratingbar, String  time, String personnel, String drink ,String contents , String location) {
             try {
-                _db.execSQL( "insert into " + TABLE_FOOD_INFO + "(DATE, TITLE, PICTURE, RATINGBAR, TIME , PERSONNEL, DRINK, CONTENTS, LOCATION) values ('" + date + "', '" + title + "', '" + picture + "' , '" + ratingbar + "','" + time + "','" + personnel + "','" + contents + "', '" + location + "');" );
+                _db.execSQL( "insert into " + TABLE_FOOD_INFO + "(DATE, TITLE, PICTURE, RATINGBAR, TIME , PERSONNEL, DRINK, CONTENTS, LOCATION) values ('" + date + "', '" + title + "', '" + picture + "' , '" + ratingbar + "','" + time + "','" + personnel + "','" + drink + "','" + contents + "', '" + location + "');" );
             } catch(Exception ex) {
                 Log.e(TAG, "Exception in executing insert SQL.", ex);
             }
@@ -174,9 +174,9 @@ public class FoodDatabase {
 
 
 
-    public void insertRecord(String date, String title,String picture, float ratingbar, String time, String personnel, String contents, String location){
+    public void insertRecord(String date, String title,String picture, float ratingbar, String time, String personnel, String drink, String contents, String location){
         try{
-            db.execSQL( "insert into " + TABLE_FOOD_INFO + "(DATE, TITLE, PICTURE, RATINGBAR, TIME,PERSONNEL, CONTENTS, LOCATION) values ('" + date + "', '" + title + "', '" + picture + "' , '" + ratingbar + "','" + time + "','" + personnel + "','" + contents + "', '" + location + "');" );
+            db.execSQL( "insert into " + TABLE_FOOD_INFO + "(DATE, TITLE, PICTURE, RATINGBAR, TIME,PERSONNEL, DRINK, CONTENTS, LOCATION) values ('" + date + "', '" + title + "', '" + picture + "' , '" + ratingbar + "','" + time + "','" + personnel + "','" + drink + "','" + contents + "', '" + location + "');" );
         }catch (Exception ex){
             Log.e(TAG, "Exception in executing insert SQL.", ex);
         }
@@ -186,7 +186,7 @@ public class FoodDatabase {
         ArrayList<FoodItem> result = new ArrayList<FoodItem>();
 
         try{
-            Cursor cursor = db.rawQuery("select _id,DATE, TITLE, PICTURE, RATINGBAR, TIME, PERSONNEL, CONTENTS, LOCATION from " + TABLE_FOOD_INFO, null);
+            Cursor cursor = db.rawQuery("select _id,DATE, TITLE, PICTURE, RATINGBAR, TIME, PERSONNEL, DRINK ,CONTENTS, LOCATION from " + TABLE_FOOD_INFO, null);
             for (int i = 0; i < cursor.getCount(); i++){
                 cursor.moveToNext();
 
@@ -197,12 +197,13 @@ public class FoodDatabase {
                 float ratingbar = cursor.getFloat(4);
                 String time = cursor.getString(5);
                 String personnel = cursor.getString(6);
-                String contents = cursor.getString(7);
-                String location = cursor.getString(8);
+                String drink = cursor.getString(7);
+                String contents = cursor.getString(8);
+                String location = cursor.getString(9);
 
 
 
-                FoodItem item = new FoodItem(_id, date, title, picture, ratingbar, time, personnel,contents, location);
+                FoodItem item = new FoodItem(_id, date, title, picture, ratingbar, time, personnel, drink ,contents, location);
                 result.add(item);
 
             }
