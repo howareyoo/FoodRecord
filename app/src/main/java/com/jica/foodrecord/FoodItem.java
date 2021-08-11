@@ -35,6 +35,20 @@ public class FoodItem {
 
     }
 
+    public FoodItem(int _id, String date, String time, String personnel, String drink, String location) {
+
+        this._id = _id;
+        this.date = date;
+        this.time = time;
+        this.personnel = personnel;
+        this.drink = drink;
+        this.location = location;
+
+
+    }
+
+
+
     public String getDrink() {
         return drink;
     }

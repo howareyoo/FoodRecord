@@ -223,8 +223,6 @@ public class EditFragment extends Fragment implements OnMapReadyCallback {
 
         //알콜여부
         checkBoxDrink = rootView.findViewById(R.id.checkBoxDrink);
-
-
         checkBoxDrink.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -249,9 +247,6 @@ public class EditFragment extends Fragment implements OnMapReadyCallback {
 
             }
         });
-
-
-
 
         //내용
         editText = rootView.findViewById(R.id.editText);

@@ -7,8 +7,11 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 
-
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 
 public class FoodDatabase {
@@ -159,7 +162,16 @@ public class FoodDatabase {
 
 
 
+
     }
+
+
+
+
+
+
+
+    //db 삭제
 
     public void deleteRecord(int _id){
         try{
@@ -173,6 +185,7 @@ public class FoodDatabase {
 
 
 
+    //db 입력
 
     public void insertRecord(String date, String title,String picture, float ratingbar, String time, String personnel, String drink, String contents, String location){
         try{
@@ -181,6 +194,10 @@ public class FoodDatabase {
             Log.e(TAG, "Exception in executing insert SQL.", ex);
         }
     }
+
+
+
+    //모든 db 불러오기
 
     public ArrayList<FoodItem> selectAll() {
         ArrayList<FoodItem> result = new ArrayList<FoodItem>();
@@ -214,6 +231,53 @@ public class FoodDatabase {
         return result;
 
     }
+
+
+
+    //오늘 날짜와 같은 db 찾기
+
+
+
+
+    public ArrayList<FoodItem> selectDate() {
+        ArrayList<FoodItem> result = new ArrayList<FoodItem>();
+
+        Date currentYear = Calendar.getInstance().getTime();
+        SimpleDateFormat today = new SimpleDateFormat("MM.dd", Locale.getDefault());
+        String todayDate2 = today.format(currentYear);
+
+
+        try{
+
+            String sql =  "select _id, DATE, TIME, PERSONNEL, DRINK , LOCATION from FOOD_INFO where DATE = '" + todayDate2 + "'";
+            Log.d("TAG", "실행 sql문장 : " + sql );
+
+            Cursor cursor = db.rawQuery(sql  ,  null);
+            for (int i = 0; i < cursor.getCount(); i++){
+                cursor.moveToNext();
+
+                int _id = cursor.getInt(0);
+                String date = cursor.getString(1);
+                String time = cursor.getString(2);
+                String personnel = cursor.getString(3);
+                String drink = cursor.getString(4);
+                String location = cursor.getString(5);
+
+                FoodItem item = new FoodItem(_id, date, time, personnel, drink , location);
+                result.add(item);
+
+            }
+
+        }catch (Exception ex){
+            Log.e(TAG, "Exception in executing insert SQL.", ex);
+        }
+        return result;
+
+    }
+
+
+
+
 
     private void println(String msg) {
         Log.d(TAG, msg);

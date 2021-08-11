@@ -113,6 +113,13 @@ public class MainActivity extends AppCompatActivity implements OnDatabaseCallbac
         return result;
     }
 
+    @Override
+    public ArrayList<FoodItem> selectDate() {
+
+        ArrayList<FoodItem> result = database.selectDate();
+
+        return result;
+    }
 
 
     public void onTabSelected(int position){

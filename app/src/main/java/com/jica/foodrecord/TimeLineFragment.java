@@ -16,6 +16,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +25,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,6 +40,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import static java.sql.DriverManager.println;
+
 public class TimeLineFragment extends Fragment {
 
 
@@ -48,10 +52,12 @@ public class TimeLineFragment extends Fragment {
 
 
     EditText etTodayDate;
+    FrameLayout flToday;
     TextView tvTodayLocation;
     TextView tvTodayTime;
     TextView tvTodayWho;
     CheckBox cbTodayDrink;
+
 
 
 
@@ -131,6 +137,7 @@ public class TimeLineFragment extends Fragment {
 
                         Toast.makeText(context, "click", Toast.LENGTH_LONG).show();
                         dialog.hide();
+
                     }
                 });
 
@@ -172,21 +179,35 @@ public class TimeLineFragment extends Fragment {
 
 
 
-        //상단 화면 보이기
-
-        etTodayDate = rootView.findViewById(R.id.etTodayDate);
-
+        //상단 화면 오늘날짜와 같은 date db 보이기
+        //오늘 날짜 설정
+        flToday = rootView.findViewById(R.id.flToday);
+        etTodayDate = flToday.findViewById(R.id.etTodayDate);
 
         SimpleDateFormat todayFormat = new SimpleDateFormat("yyyy. MM. dd. EE", Locale.getDefault());
         String todayDate = todayFormat.format(currentYear);
-
         etTodayDate.setText(todayDate);
 
-        SimpleDateFormat today = new SimpleDateFormat("M.d", Locale.getDefault());
-        String todayDate2 = todayFormat.format(currentYear);
+        //오늘날짜 자료를 db에서 가져오기
+        ArrayList<FoodItem> items = ((MainActivity)getActivity()).database.selectDate();
+        Log.d("TAG", items.toString());
+
+        //UI
+
+        tvTodayLocation = flToday.findViewById(R.id.tvTodayLocation);
+        tvTodayTime = flToday.findViewById(R.id.tvTodayTime);
+        tvTodayWho = flToday.findViewById(R.id.tvTodayWho);
+        cbTodayDrink = flToday.findViewById(R.id.cbTodayDrink);
+
+        Log.d("TAG", items.toString());
 
 
-        
+
+//        tvTodayLocation.setText();
+
+
+
+
 
 
 

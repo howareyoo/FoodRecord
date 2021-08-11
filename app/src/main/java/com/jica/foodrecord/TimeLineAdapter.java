@@ -131,16 +131,8 @@ public class TimeLineAdapter extends RecyclerView.Adapter<TimeLineAdapter.ViewHo
                 public void onClick(View v) {
                     int position = getAdapterPosition();
 
-
-
-
-
                     if(listener !=null){
                         listener.onItemClick(ViewHolder.this, v, position);
-
-
-
-
 
                         Log.d(TAG, "clicked");
 
@@ -149,12 +141,7 @@ public class TimeLineAdapter extends RecyclerView.Adapter<TimeLineAdapter.ViewHo
             });
 
 
-
-
-
         }
-
-
 
 
         public void setItem(FoodItem item){
