@@ -4,7 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import android.database.sqlite.SQLiteDatabase;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;

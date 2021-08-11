@@ -1,46 +1,43 @@
 package com.jica.foodrecord;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
+
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.DividerItemDecoration;
+
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
-import android.app.Dialog;
+
 import android.content.Context;
 import android.content.Intent;
-import android.database.sqlite.SQLiteDatabase;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
+
 import android.widget.Button;
-import android.widget.CheckBox;
+
 import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
+
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import java.lang.annotation.Annotation;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import static java.sql.DriverManager.println;
+
+
 
 public class TimeLineFragment extends Fragment {
 
@@ -57,7 +54,6 @@ public class TimeLineFragment extends Fragment {
     TextView tvTodayTime;
     TextView tvTodayWho;
     TextView tvDrink;
-
 
 
 
@@ -104,7 +100,6 @@ public class TimeLineFragment extends Fragment {
         //데이터 불러오기
         ArrayList<FoodItem> result = callback.selectAll();
         adapter.setItems(result);
-
 
 
 
@@ -188,7 +183,7 @@ public class TimeLineFragment extends Fragment {
         String todayDate = todayFormat.format(currentYear);
         etTodayDate.setText(todayDate);
 
-        //오늘날짜 자료를 db에서 가져오기
+        //오늘날짜 자료를 데이터베이스에서 가져오기
 
 
         ArrayList<FoodItem> items = ((MainActivity)getActivity()).database.selectDate();
@@ -223,9 +218,9 @@ public class TimeLineFragment extends Fragment {
 
         //플로팅액션바
 
-        FloatingActionButton fabMenu = (FloatingActionButton)rootView.findViewById(R.id.fabMenu);
-        FloatingActionButton fabSetting = (FloatingActionButton)rootView.findViewById(R.id.fabSetting);
-        FloatingActionButton fabStats = (FloatingActionButton)rootView.findViewById(R.id.fabStats);
+        FloatingActionButton fabMenu = rootView.findViewById(R.id.fabMenu);
+        FloatingActionButton fabSetting = rootView.findViewById(R.id.fabSetting);
+        FloatingActionButton fabStats = rootView.findViewById(R.id.fabStats);
 //        FloatingActionButton fabPlus = (FloatingActionButton)rootView.findViewById(R.id.fabPlus);
 
 

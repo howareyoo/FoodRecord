@@ -1,18 +1,18 @@
 package com.jica.foodrecord;
 
-import android.content.Context;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Calendar;
+
 
 import static com.jica.foodrecord.FoodDatabase.TAG;
 
@@ -62,23 +62,6 @@ public class TimeLineAdapter extends RecyclerView.Adapter<TimeLineAdapter.ViewHo
     public void setItem(int position, FoodItem item) {
         items.set(position, item);
     }
-//
-//    @Override
-//    public boolean onItemMove(int from_position, int to_position) {
-//
-//
-//
-//        return false;
-//    }
-//
-//    @Override
-//    public void onItemSwipe(int position) {
-//        String
-//
-//        items.remove(position);
-//        notifyItemRemoved(position);
-//
-//    }
 
 
 
@@ -110,7 +93,6 @@ public class TimeLineAdapter extends RecyclerView.Adapter<TimeLineAdapter.ViewHo
 
         TextView tvTimeLineDate;
         TextView tvTitle;
-//        TextView tvContents;
         TextView tvLocation;
 
 
@@ -120,7 +102,6 @@ public class TimeLineAdapter extends RecyclerView.Adapter<TimeLineAdapter.ViewHo
 
             tvTimeLineDate = itemView.findViewById(R.id.tvTimeLineDate);
             tvTitle = itemView.findViewById(R.id.tvTitle);
-//            tvContents = itemView.findViewById(R.id.tvContents);
             tvLocation = itemView.findViewById(R.id.tvLocation);
 
 
@@ -147,7 +128,6 @@ public class TimeLineAdapter extends RecyclerView.Adapter<TimeLineAdapter.ViewHo
         public void setItem(FoodItem item){
             tvTimeLineDate.setText(item.getDate());
             tvTitle.setText(item.getTitle());
-//            tvContents.setText(item.getContents());
             tvLocation.setText(item.getLocation());
 
         }
@@ -157,3 +137,19 @@ public class TimeLineAdapter extends RecyclerView.Adapter<TimeLineAdapter.ViewHo
 
 
 }
+
+
+
+
+
+/*    itemView.findViewById(R.id.ivDeleteData).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                    int position = getAdapterPosition();
+
+                    onItemSwipe(position);
+
+                    Toast.makeText(itemView.getContext(), "clicked", Toast.LENGTH_LONG ).show();
+                }
+            });*/

@@ -41,7 +41,7 @@
                 android:id="@+id/tvTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="30dp"
+                android:layout_marginLeft="15dp"
                 android:layout_marginRight="13dp"
                 android:padding="2dp"
                 android:text="가나다라마바사"
@@ -64,6 +64,15 @@
                 android:padding="2dp"
                 android:text="가나다라마바사"
                 android:textAlignment="viewStart" />
+
+            <ImageView
+                android:id="@+id/ivDeleteData"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp"
+                android:layout_weight="1"
+                android:visibility="gone"
+                app:srcCompat="@drawable/ic_baseline_delete_forever_24" />
         </LinearLayout>
 
     </LinearLayout>

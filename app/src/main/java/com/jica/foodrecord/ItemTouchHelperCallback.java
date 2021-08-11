@@ -36,4 +36,17 @@ public class ItemTouchHelperCallback extends ItemTouchHelper.Callback {
     public void onSwiped(@NonNull  RecyclerView.ViewHolder viewHolder, int direction) {
         listener.onItemSwipe(viewHolder.getAdapterPosition());
     }
+
+    @Override
+    public boolean isItemViewSwipeEnabled() {
+        return false;
+    }
+
+    public interface ItemTouchHelperListener {
+        boolean onItemMove(int from_position, int to_position);
+        void onItemSwipe(int position);
+    }
+
+
+
 }
