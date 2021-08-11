@@ -121,10 +121,13 @@
                 android:layout_weight="1"
                 android:src="@drawable/time_line_beer" />
 
-            <CheckBox
-                android:id="@+id/cbTodayDrink"
+            <TextView
+                android:id="@+id/tvDrink"
                 android:layout_width="wrap_content"
-                android:layout_height="match_parent" />
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_weight="1"
+                android:hint="YES OR NO" />
 
         </LinearLayout>
 

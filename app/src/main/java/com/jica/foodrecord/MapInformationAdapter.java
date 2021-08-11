@@ -75,6 +75,7 @@ public class MapInformationAdapter extends RecyclerView.Adapter<MapInformationAd
     static class ViewHolder extends RecyclerView.ViewHolder{
         TextView tvMapInfo;
 
+
         public ViewHolder(@NonNull  View itemView, OnMapInformationClickListener listener) {
             super(itemView);
 

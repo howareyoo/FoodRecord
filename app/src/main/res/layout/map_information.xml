@@ -11,12 +11,12 @@
 
         <TextView
             android:id="@+id/tvMapInfo"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="42dp"
             android:background="@drawable/map_information"
+            android:hint="LOCATION"
             android:paddingTop="8dp"
             android:paddingBottom="8dp"
-            android:text="23232"
             android:textAlignment="center"
             android:textColor="@color/white"
             android:textSize="18dp"

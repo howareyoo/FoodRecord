@@ -56,7 +56,7 @@ public class TimeLineFragment extends Fragment {
     TextView tvTodayLocation;
     TextView tvTodayTime;
     TextView tvTodayWho;
-    CheckBox cbTodayDrink;
+    TextView tvDrink;
 
 
 
@@ -189,31 +189,36 @@ public class TimeLineFragment extends Fragment {
         etTodayDate.setText(todayDate);
 
         //오늘날짜 자료를 db에서 가져오기
+
+
         ArrayList<FoodItem> items = ((MainActivity)getActivity()).database.selectDate();
         Log.d("TAG", items.toString());
 
-        //UI
+        //UI 객체 찾기
 
         tvTodayLocation = flToday.findViewById(R.id.tvTodayLocation);
         tvTodayTime = flToday.findViewById(R.id.tvTodayTime);
         tvTodayWho = flToday.findViewById(R.id.tvTodayWho);
-        cbTodayDrink = flToday.findViewById(R.id.cbTodayDrink);
-
-        Log.d("TAG", items.toString());
-
-
-
-//        tvTodayLocation.setText();
+        tvDrink = flToday.findViewById(R.id.tvDrink);
 
 
 
 
+        //데이터 값 설정
 
+        if(items.toString() != null){
 
+            try {
+                tvTodayLocation.setText(items.get(0).getLocation());
+                tvTodayTime.setText(items.get(0).getTime());
+                tvTodayWho.setText(items.get(0).getPersonnel());
+                tvDrink.setText(items.get(0).getDrink());
 
+            }catch (Exception e){
+                Log.d("TAG", "no data");
+            }
 
-
-
+        }
 
 
         //플로팅액션바

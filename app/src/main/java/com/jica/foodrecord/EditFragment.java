@@ -203,9 +203,30 @@ public class EditFragment extends Fragment implements OnMapReadyCallback {
                 TimePickerDialog timePickerDialog = new TimePickerDialog(context,android.R.style.Theme_Holo_Light_Dialog,new TimePickerDialog.OnTimeSetListener() {
                     @Override
                     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
+
+                        String choseHourOfDay;
+                        String choseMinute;
+
+
                         hourOfDay = view.getHour();
                         minute = view.getMinute();
-                        btnTimePicker.setText(hourOfDay + ":" + minute);
+
+
+                        if(hourOfDay <10){
+                            choseHourOfDay = "0" + hourOfDay ;
+                        }else {
+                            choseHourOfDay = String.valueOf(hourOfDay);
+                        }
+
+                        if(minute < 10){
+                            choseMinute = "0" + minute;
+                        }else {
+                            choseMinute = String.valueOf(minute);
+                        }
+
+
+
+                        btnTimePicker.setText(choseHourOfDay + ":" + choseMinute);
 
                     }
                 }, alarmHour, alarmMinute, true);
