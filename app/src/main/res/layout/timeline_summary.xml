@@ -25,9 +25,6 @@
             android:layout_height="21dp"
             android:layout_marginRight="17dp"
             android:layout_weight="0"
-            android:fontFamily="sans-serif"
-            android:hint="DATE"
-            android:textAlignment="center"
             android:textColor="#5D200D"
             android:textSize="15dp"
             android:textStyle="bold" />
@@ -46,19 +43,17 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="13dp"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif"
-                android:hint="TITLE"
-                android:textAlignment="center" />
+                android:padding="2dp"
+                android:text="가나다라마바사"
+                android:textAlignment="viewStart" />
 
             <TextView
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif"
-                android:text="/"
-                android:textAlignment="center" />
+                android:layout_weight="0"
+                android:padding="2dp"
+                android:text="/" />
 
             <TextView
                 android:id="@+id/tvLocation"
@@ -66,10 +61,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="13dp"
                 android:layout_marginRight="13dp"
-                android:layout_weight="1"
-                android:fontFamily="sans-serif"
-                android:hint="LOCATION"
-                android:textAlignment="center" />
+                android:padding="2dp"
+                android:text="가나다라마바사"
+                android:textAlignment="viewStart" />
 
             <ImageView
                 android:id="@+id/ivDeleteData"
