@@ -22,8 +22,8 @@ public class TimeLineDialog extends Dialog {
 
         setContentView(R.layout.timeline_dialog);
 
-        btnDataUpdate = findViewById(R.id.btnDataUpdate);
-        btnDataDelete = findViewById(R.id.btnDataDelete);
+        btnDataUpdate = findViewById(R.id.btnDataDelete);
+        btnDataDelete = findViewById(R.id.btnDataUpdate);
 
         btnDataDelete.setOnClickListener(new View.OnClickListener() {
             @Override

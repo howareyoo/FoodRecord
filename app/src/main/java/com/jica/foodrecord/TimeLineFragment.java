@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 
 import androidx.fragment.app.Fragment;
 
-import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,7 +23,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -123,7 +121,7 @@ public class TimeLineFragment extends Fragment {
 
             //버튼 클릭시 이벤트 발생
 
-                Button btnDataUpdate = dialogBView.findViewById(R.id.btnDataUpdate);
+                Button btnDataUpdate = dialogBView.findViewById(R.id.btnDataDelete);
                 btnDataUpdate.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -136,7 +134,7 @@ public class TimeLineFragment extends Fragment {
                     }
                 });
 
-                Button btnDataDelete = dialogBView.findViewById(R.id.btnDataDelete);
+                Button btnDataDelete = dialogBView.findViewById(R.id.btnDataUpdate);
                 btnDataDelete.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
