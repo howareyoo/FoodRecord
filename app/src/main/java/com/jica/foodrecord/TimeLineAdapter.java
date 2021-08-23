@@ -117,6 +117,8 @@ public class TimeLineAdapter extends RecyclerView.Adapter<TimeLineAdapter.ViewHo
 
                         Log.d(TAG, "clicked");
 
+
+
                     }
                 }
             });

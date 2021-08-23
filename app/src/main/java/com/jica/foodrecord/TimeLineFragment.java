@@ -54,7 +54,7 @@ public class TimeLineFragment extends Fragment {
     TextView tvTodayWho;
     TextView tvDrink;
 
-
+    ViewFragment viewFragment;
 
 
     Context context;
@@ -126,6 +126,11 @@ public class TimeLineFragment extends Fragment {
                 btnDataUpdate.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
+                        viewFragment = new ViewFragment();
+
+                        getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.flContainer,viewFragment).commit();
+
 
 
 

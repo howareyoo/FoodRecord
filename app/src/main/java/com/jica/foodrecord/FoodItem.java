@@ -1,6 +1,7 @@
 package com.jica.foodrecord;
 
 
+import android.graphics.Bitmap;
 
 public class FoodItem {
 
