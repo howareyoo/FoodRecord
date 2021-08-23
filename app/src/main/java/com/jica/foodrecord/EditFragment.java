@@ -259,6 +259,7 @@ public class EditFragment extends Fragment implements OnMapReadyCallback {
                 }else {
 
                     checkResult = String.valueOf(checkBoxDrink.isChecked());
+
                     Toast.makeText(context, "checked " + checkResult, Toast.LENGTH_SHORT).show();
                 }
 
@@ -297,6 +298,10 @@ public class EditFragment extends Fragment implements OnMapReadyCallback {
 
 
             }
+
+
+
+
         });
 
 
@@ -318,6 +323,8 @@ public class EditFragment extends Fragment implements OnMapReadyCallback {
                 String location = etSearch.getText().toString();
 
                 callback.insert(date,title, picture, ratingbar, time, personnel, drink, contents, location);
+
+
 
                 MainActivity mainActivity = (MainActivity) getActivity();
                 mainActivity.onTabSelected(1);

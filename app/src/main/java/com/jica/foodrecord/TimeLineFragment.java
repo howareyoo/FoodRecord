@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import androidx.fragment.app.Fragment;
 
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -150,11 +151,18 @@ public class TimeLineFragment extends Fragment {
 
                       dialog.hide();
 
+
+
+
                     }
+
+
                 });
+
 
                 Toast.makeText(context, "clicked" +item.getTitle(), Toast.LENGTH_LONG ).show();
             }
+
         });
 
 
